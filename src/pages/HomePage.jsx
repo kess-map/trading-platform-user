@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import LiveSessionTimer from '../components/Timer'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { useAuthStore } from '../store/authStore'
 import toast from 'react-hot-toast'
 import { Copy } from 'lucide-react';
@@ -42,7 +43,7 @@ const HomePage = () => {
     <div className="w-full min-h-screen bg-white px-4 md:px-8 py-6">
       <h2 className="text-xl md:text-2xl font-bold mb-6">Welcome, {user.username}</h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      {!user ? <LoadingSpinner/> : <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div className="border p-4 rounded">
             <p className="text-gray-500 text-sm">Available Balance</p>
             <p className="text-xl font-semibold">{user.availableBalance}</p>
@@ -59,7 +60,7 @@ const HomePage = () => {
             <p className="text-gray-500 text-sm">Referral Balance</p>
             <p className="text-xl font-semibold">{user.referralBonusBalance}</p>
           </div>
-      </div>
+      </div>}
 
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <div className="bg-lime-100 p-4 rounded flex flex-col justify-between">

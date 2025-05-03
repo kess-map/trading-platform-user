@@ -9,12 +9,12 @@ const VerificationSuccessPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white p-8 sm:p-10 rounded-2xl shadow-2xl text-center w-full max-w-md"
+        className="bg-black border border-zinc-700 p-8 sm:p-10 rounded-2xl shadow-2xl text-center w-full max-w-md"
       >
         <div className="flex justify-center mb-6">
           <img
@@ -24,16 +24,16 @@ const VerificationSuccessPage = () => {
           />
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
           Phone number verification successful!
         </h1>
-        <p className="text-gray-500 mb-6 text-sm sm:text-base">
+        <p className="text-white mb-6 text-sm sm:text-base">
           Go maximize your earnings
         </p>
 
         <button
           onClick={handleContinue}
-          className="bg-lime-400 hover:bg-lime-500 text-black font-bold py-3 px-6 rounded-full transition duration-200"
+          className="bg-lime-400 hover:bg-lime-500 text-black font-normal py-3 px-6 rounded-xl transition duration-200"
         >
           Let's go!
         </button>

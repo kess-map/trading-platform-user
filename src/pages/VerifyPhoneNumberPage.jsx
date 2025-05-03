@@ -54,17 +54,17 @@ const VerifyPhoneNumberPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md bg-white p-8 sm:p-10 rounded-2xl shadow-2xl"
+        className="w-full max-w-md bg-black border border-zinc-700 p-8 sm:p-10 rounded-2xl shadow-2xl"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-black">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white">
           Verify Phone Number
         </h2>
-        <p className="text-center text-black mb-6 text-sm sm:text-base">
+        <p className="text-center text-white mb-6 text-sm sm:text-base">
           Enter the 6-digit code sent to your phone number
         </p>
 
@@ -79,7 +79,7 @@ const VerifyPhoneNumberPage = () => {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-xl sm:text-2xl font-bold border border-gray-300 rounded-md focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-white text-xl sm:text-2xl font-bold  bg-zinc-900 border border-zinc-600 rounded-md focus:ring-2 focus:ring-lime-500 focus:outline-none"
               />
             ))}
           </div>
@@ -98,7 +98,7 @@ const VerifyPhoneNumberPage = () => {
             {isLoading ? (
               <Loader className="w-6 h-6 animate-spin text-center mx-auto" />
             ) : (
-              'Verify Email'
+              'Submit'
             )}
           </motion.button>
             <button

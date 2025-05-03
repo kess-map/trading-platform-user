@@ -32,10 +32,10 @@ export const useOrderStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Error Fetching Sell Orders')
         }
     },
-    createSellOrders: async()=>{
+    createSellOrders: async(sellOrderDetails)=>{
         set({isLoading: true, error:null})
         try {
-           const response = await axios.get(`/sell-orders/create`)
+           await axios.post(`/sell-orders/create`, sellOrderDetails)
            set({ isLoading: false})
            return toast.success('Sell Order Created Successfully')
         } catch (error) {

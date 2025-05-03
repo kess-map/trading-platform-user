@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { useOrderStore } from "../store/orderStore";
  
-const LiveSessionTimer = ({otherStyles}) => {
+const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgColour, labelTextColour, greenTextColour, redTextColour, bottomLabelColour, otherStyles}) => {
   const [sessions, setSessions] = useState([]);
   const [currentSession, setCurrentSession] = useState(null);
   const [timer, setTimer] = useState(null);
@@ -98,17 +98,30 @@ const LiveSessionTimer = ({otherStyles}) => {
   if (!timer || !currentSession) return null;
  
   const { hours, minutes, seconds } = formatTime(timer);
+
+  const greenBgColours = greenBgColor || "bg-green-400"
+  const redBgColours = redBgColour || "bg-red-400"
+
+  const greenBgSecColours = greenSecBgColor || "bg-green-500"
+  const redBgSecColours = redSecBgColour || "bg-red-500"
+
+  const labelTextColours = labelTextColour || 'text-white'
+
+  const greenTextColours = greenTextColour ||  "text-green-500"
+  const redTextColours = redTextColour ||  "text-red-500"
+
+  const bottomLabelColours = bottomLabelColour || 'text-black'
  
   return (
-    <div className={`p-6 rounded-lg text-center font-semibold ${currentSession.mode === "ongoing" ? "bg-green-400" : "bg-red-400"} text-white ${otherStyles}`}>
+    <div className={`p-6 rounded-lg text-center font-semibold ${currentSession.mode === "ongoing" ? greenBgColours : redBgColours} ${labelTextColours} ${otherStyles}`}>
       {currentSession.mode === "ongoing" ? "Live session ends in:" : "Next live session starts in:"}
       <div className="flex justify-center gap-4 mt-4 text-2xl font-bold">
         {[{ label: "Hours", value: hours }, { label: "Minutes", value: minutes }, { label: "Seconds", value: seconds }].map((item) => (
-          <div key={item.label} className="flex flex-col items-center bg-white text-black rounded px-4 py-2">
-            <div className={`${currentSession.mode === "ongoing" ? "text-green-500" : "text-red-500"} text-3xl font-bold`}>
+          <div key={item.label} className={`flex flex-col items-center ${currentSession.mode === "ongoing" ? greenBgSecColours : redBgSecColours} ${bottomLabelColours} rounded px-3 py-2`}>
+            <div className={`${currentSession.mode === "ongoing" ? greenTextColours : redTextColours} text-3xl font-bold`}>
               {item.value}
             </div>
-            <span className="text-xs font-normal text-gray-600">{item.label}</span>
+            <span className="text-xs font-bold text-gray-600">{item.label}</span>
           </div>
         ))}
       </div>
