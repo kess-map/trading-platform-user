@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { useOrderStore } from "../store/orderStore";
+import LoadingSpinner from "./LoadingSpinner";
  
-const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgColour, labelTextColour, greenTextColour, redTextColour, bottomLabelColour, otherStyles}) => {
+const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgColour, labelTextColour, greenTextColour, redTextColour, bottomLabelColour,greenTimerLabelColour, redTimerLabelColour, otherStyles}) => {
   const [sessions, setSessions] = useState([]);
   const [currentSession, setCurrentSession] = useState(null);
   const [timer, setTimer] = useState(null);
@@ -85,7 +86,7 @@ const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgC
     return { hours, minutes, seconds };
   };
  
-  if (loading) return <div className="text-white">Loading sessions...</div>;
+  if (loading) return <LoadingSpinner size={'h-full'}/>;
  
   if (sessions.length === 0) {
     return (
@@ -111,17 +112,20 @@ const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgC
   const redTextColours = redTextColour ||  "text-red-500"
 
   const bottomLabelColours = bottomLabelColour || 'text-black'
+
+  const greenTimerLabelColours = greenTimerLabelColour || "text-gray-600"
+  const redTimerLabelColours = redTimerLabelColour || "text-gray-600"
  
   return (
-    <div className={`p-6 rounded-lg text-center font-semibold ${currentSession.mode === "ongoing" ? greenBgColours : redBgColours} ${labelTextColours} ${otherStyles}`}>
+    <div className={`flex flex-col gap-4 p-6 rounded-2xl text-2xl text-center font-semibold ${currentSession.mode === "ongoing" ? greenBgColours : redBgColours} ${labelTextColours} ${otherStyles}`}>
       {currentSession.mode === "ongoing" ? "Live session ends in:" : "Next live session starts in:"}
       <div className="flex justify-center gap-4 mt-4 text-2xl font-bold">
         {[{ label: "Hours", value: hours }, { label: "Minutes", value: minutes }, { label: "Seconds", value: seconds }].map((item) => (
-          <div key={item.label} className={`flex flex-col items-center ${currentSession.mode === "ongoing" ? greenBgSecColours : redBgSecColours} ${bottomLabelColours} rounded px-3 py-2`}>
+          <div key={item.label} className={`flex flex-col items-center ${currentSession.mode === "ongoing" ? greenBgSecColours : redBgSecColours} ${bottomLabelColours} rounded-xl px-3 py-2`}>
             <div className={`${currentSession.mode === "ongoing" ? greenTextColours : redTextColours} text-3xl font-bold`}>
               {item.value}
             </div>
-            <span className="text-xs font-bold text-gray-600">{item.label}</span>
+            <span className={`text-xs font-bold ${currentSession.mode === "ongoing" ? greenTimerLabelColours : redTimerLabelColours}`}>{item.label}</span>
           </div>
         ))}
       </div>
