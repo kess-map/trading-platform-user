@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import toast, { LoaderIcon } from 'react-hot-toast';
 import { useOrderStore } from '../store/orderStore';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateSellOrderForm() {
+  const navigate = useNavigate()
   const {createSellOrder, isLoading} = useOrderStore()
   const [paymentMethod, setPaymentMethod] = useState('');
   const [formData, setFormData] = useState({
@@ -42,6 +44,7 @@ export default function CreateSellOrderForm() {
       walletAddress: ''
     })
     setPaymentMethod('')
+    navigate('/orders')
   }
 
   return (

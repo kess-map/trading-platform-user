@@ -54,4 +54,15 @@ export const useOrderStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Error Creating Buy Order')
         }
     },
+    createInvestment: async(investmentDetails)=>{
+        set({isLoading: true, error:null})
+        try {
+           await axios.post(`/investments/create`, investmentDetails)
+           set({ isLoading: false})
+           return toast.success('Investment Created Successfully')
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Error Creating Investment')
+        }
+    },
 }))

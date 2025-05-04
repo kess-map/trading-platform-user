@@ -14,6 +14,7 @@ import OrdersPage from './pages/OrdersPage'
 import CreateBuyOrderForm from './pages/CreateBuyOrderPage'
 import CreateSellOrderForm from './pages/CreateSellOrderPage'
 import InvestmentsPage from './pages/InvestmentsPage'
+import CreateInvestmentPage from './pages/CreateInvestmentPage'
 import Sidebar from './components/Sidebar'
 
 function App() {
@@ -93,6 +94,10 @@ function App() {
           <Route path={'/investment'} element={
             <ProtectedRoute>
               <InvestmentsPage />
+            </ProtectedRoute>} />
+          <Route path={'/create-investment'} element={
+            <ProtectedRoute>
+              <CreateInvestmentPage />
             </ProtectedRoute>} />
       </Routes>
       <Toaster/>

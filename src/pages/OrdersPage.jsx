@@ -20,7 +20,6 @@ export default function MyOrdersOverview() {
 
   const fetchOrders = async()=>{
     const res = await axiosInstance.get('/buy-orders/all')
-    console.log(res.data.data)
     setOrders(res.data.data)
   }
 
