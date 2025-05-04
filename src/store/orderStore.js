@@ -32,7 +32,7 @@ export const useOrderStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Error Fetching Sell Orders')
         }
     },
-    createSellOrders: async(sellOrderDetails)=>{
+    createSellOrder: async(sellOrderDetails)=>{
         set({isLoading: true, error:null})
         try {
            await axios.post(`/sell-orders/create`, sellOrderDetails)
@@ -41,6 +41,17 @@ export const useOrderStore = create((set)=> ({
         } catch (error) {
             set({isLoading: false})
             return toast.error(error.response.data.message || 'Error Creating Sell Order')
+        }
+    },
+    createBuyOrder: async(buyOrderDetails)=>{
+        set({isLoading: true, error:null})
+        try {
+           await axios.post(`/buy-orders/create`, buyOrderDetails)
+           set({ isLoading: false})
+           return toast.success('Buy Order Created Successfully')
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Error Creating Buy Order')
         }
     },
 }))

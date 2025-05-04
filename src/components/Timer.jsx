@@ -118,7 +118,7 @@ const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgC
  
   return (
     <div className={`flex flex-col gap-4 p-6 rounded-2xl text-2xl text-center font-semibold ${currentSession.mode === "ongoing" ? greenBgColours : redBgColours} ${labelTextColours} ${otherStyles}`}>
-      {currentSession.mode === "ongoing" ? "Live session ends in:" : "Next live session starts in:"}
+      {currentSession.mode === "ongoing" ? "Trade session  in progress, Ends in:" : "Next live session starts in:"}
       <div className="flex justify-center gap-4 mt-4 text-2xl font-bold">
         {[{ label: "Hours", value: hours }, { label: "Minutes", value: minutes }, { label: "Seconds", value: seconds }].map((item) => (
           <div key={item.label} className={`flex flex-col items-center ${currentSession.mode === "ongoing" ? greenBgSecColours : redBgSecColours} ${bottomLabelColours} rounded-xl px-3 py-2`}>

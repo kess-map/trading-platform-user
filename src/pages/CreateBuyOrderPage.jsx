@@ -1,39 +1,58 @@
 import React, { useState } from 'react';
+import toast, { LoaderIcon } from 'react-hot-toast';
+import { useOrderStore } from '../store/orderStore';
 
-export default function CreateBuyOrderForm() {
+export default function CreateSellOrderForm() {
+  const {createBuyOrder, isLoading} = useOrderStore()
   const [paymentMethod, setPaymentMethod] = useState('');
-  const [formData, setFormData] = useState({
-    amount: '',
-    bankName: '',
-    accountName: '',
-    accountNumber: '',
-    network: '',
-    walletAddress: '',
-  });
+  const [amount, setAmount] = useState('');
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleSubmit = async(e)=>{
+    e.preventDefault()
+
+    if(!paymentMethod || !amount)return toast.error('Select an amount and a payment method')
+
+    await createBuyOrder({amount, paymentMethod})
+    setAmount('')
+    setPaymentMethod('')
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-xl font-bold mb-4 text-center">Create sell order</h2>
+    <div className="min-h-screen flex items-center justify-center bg-black">
+      <form className="w-full max-w-md p-6 bg-black rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-[#D6D7DA] text-left">Create buy order</h2>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1">Amount</label>
-          <select name="amount" className="w-full border p-2 rounded" value={formData.amount} onChange={handleChange}>
+          <label className="block text-sm mb-1 text-[#ADAFB4]">Amount</label>
+          <select 
+          name="amount" 
+          className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" 
+          value={amount} 
+          onChange={(e) => {
+            setAmount(e.target.value);
+          }}>
             <option value="">Select</option>
-            <option value="25000">25,000</option>
-            <option value="50000">50,000</option>
-            {/* Add more options if needed */}
+            <option value={25000}>25,000</option>
+            <option value={50000}>50,000</option>
+            <option value={75000}>75,000</option>
+            <option value={100000}>100,000</option>
+            <option value={150000}>150,000</option>
+            <option value={200000}>200,000</option>
+            <option value={250000}>250,000</option>
+            <option value={300000}>300,000</option>
+            <option value={400000}>400,000</option>
+            <option value={500000}>500,000</option>
           </select>
         </div>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1">Payment method</label>
+          <label className="block text-sm mb-1  text-[#ADAFB4]">Payment method</label>
           <select
-            className="w-full border p-2 rounded"
+            className="w-full border border-[#5B6069] p-2  rounded-lg bg-black text-[#ADAFB4]"
             value={paymentMethod}
             onChange={(e) => {
               setPaymentMethod(e.target.value);
@@ -41,15 +60,17 @@ export default function CreateBuyOrderForm() {
           >
             <option value="">Select</option>
             <option value="bank">Bank transfer</option>
-            <option value="crypto">Crypto</option>
+            <option value="usdt">Crypto</option>
           </select>
         </div>
 
-        <p className="text-sm text-orange-600 mt-2 text-center">Your order will go live in the next session</p>
+        <p className="text-sm text-[#E0742B] mt-2 text-center">Your order will go live in the next session</p>
 
-        <button type="submit" className="mt-4 w-full bg-lime-400 hover:bg-lime-500 text-white px-4 py-2 rounded">
-          Submit
-        </button>
+        <div className='flex justify-center'>
+          <button disabled={isLoading} onClick={handleSubmit} className="mt-4 bg-[#CAEB4B] text-[#1D2308] px-20 py-2 rounded-xl">
+            {isLoading ? <LoaderIcon/> : 'Submit'}
+          </button>
+        </div>
       </form>
     </div>
   );

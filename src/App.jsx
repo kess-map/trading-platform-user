@@ -1,7 +1,7 @@
-import {Navigate, Route, Routes, useLocation} from 'react-router-dom'
+import {Navigate, Route, Routes, useLocation, Link} from 'react-router-dom'
 import LoginPage from './pages/LogInPage'
 import {Toaster} from 'react-hot-toast'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import HomePage from './pages/HomePage'
 import LoadingSpinner from './components/LoadingSpinner'
 import NavbarAuth from './components/NavbarAuth'
@@ -13,8 +13,12 @@ import VerificationSuccessPage from './pages/VerificationSuccessPage'
 import OrdersPage from './pages/OrdersPage'
 import CreateBuyOrderForm from './pages/CreateBuyOrderPage'
 import CreateSellOrderForm from './pages/CreateSellOrderPage'
+import InvestmentsPage from './pages/InvestmentsPage'
+import Sidebar from './components/Sidebar'
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const ProtectedRoute = ({children})=>{
     const {isAuthenticated, user} = useAuthStore()
   
@@ -49,8 +53,9 @@ function App() {
   return (
     <>
       <div className={`min-h-screen w-full`}>
+    {isProtectedPage && isSidebarOpen && <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar}/>}
       {isShowAuthNavbarPage && <NavbarAuth />}
-      {isProtectedPage && <NavbarMain />}
+      {isProtectedPage && <NavbarMain onMenuClick={toggleSidebar} />}
       <Routes>
           <Route path='/login' element={
             <RedirectAuthenticatedUser>
@@ -84,6 +89,10 @@ function App() {
           <Route path={'/create-buy-order'} element={
             <ProtectedRoute>
               <CreateBuyOrderForm />
+            </ProtectedRoute>} />
+          <Route path={'/investment'} element={
+            <ProtectedRoute>
+              <InvestmentsPage />
             </ProtectedRoute>} />
       </Routes>
       <Toaster/>

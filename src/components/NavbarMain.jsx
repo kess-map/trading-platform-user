@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Bell, Moon } from 'lucide-react';
 
-const NavbarMain = () => {
+const NavbarMain = ({onMenuClick}) => {
   return (
     <nav className="bg-black shadow-md w-full py-4 px-6 flex justify-between items-center">
-      <div className="text-2xl font-bold text-white">Logo</div>
+      <div className='flex'>
+        <button onClick={onMenuClick} className="md:hidden text-white text-2xl ">
+            ☰
+          </button>
+        <div className="ml-5 text-2xl font-bold text-white">Logo</div>
+      </div>
 
       <ul className="hidden md:flex items-center space-x-6 text-sm font-medium text-white">
         <li><Link to="/" className="hover:text-primary">Home</Link></li>
