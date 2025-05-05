@@ -65,4 +65,26 @@ export const useOrderStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Error Creating Investment')
         }
     },
+    cancelBuyOrder: async(id)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.put(`/buy-orders/cancel/${id}`)
+           set({ isLoading: false})
+           return toast.success('Buy order canceled successfully') 
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Something went wrong')
+        }
+    },
+    cancelSellOrder: async(id)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.put(`/sell-orders/cancel/${id}`)
+           set({ isLoading: false})
+           return toast.success('Sell order canceled successfully') 
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Something went wrong')
+        }
+    },
 }))

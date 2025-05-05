@@ -16,7 +16,7 @@ export default function MyOrdersOverview() {
   const [orderType, setOrderType] = useState('buy');
   const [activeTab, setActiveTab] = useState('pending');
 
-  const {isLive} = useOrderStore()
+  const {isLive, cancelSellOrder, cancelBuyOrder} = useOrderStore()
 
   const fetchOrders = async()=>{
     const res = await axiosInstance.get('/buy-orders/all')
@@ -32,6 +32,28 @@ export default function MyOrdersOverview() {
 		.then(()=>toast.success('Copied to clipboard'))
 		.catch(err=>toast.error('Failed to copy', err))
 	}
+
+  const cancelOrder = async(id)=>{
+    if(orderType === 'sell'){
+      await cancelSellOrder(id)
+      setOrders(prev => ({
+        ...prev,
+        sellOrders: {
+          ...prev.sellOrders,
+          pending: prev.sellOrders.pending.filter(order => order._id !== id)
+        }
+      }));
+    }else{
+      await cancelBuyOrder(id)
+      setOrders(prev => ({
+        ...prev,
+        buyOrders: {
+          ...prev.buyOrders,
+          pending: prev.buyOrders.pending.filter(order => order._id !== id)
+        }
+      }));
+    }
+  }
 
   return (
     <div className="p-4 md:p-8 min-h-screen w-full max-w-full overflow-x-hidden bg-black">
@@ -138,7 +160,7 @@ export default function MyOrdersOverview() {
         <p className="font-semibold text-[#D6D7DA]">{order.amount?.toLocaleString()}</p>
         
         {!isMatched && order.status === 'pending' && (
-          <button className=" px-3 py-1 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Cancel</button>
+          <button onClick={()=>{cancelOrder(order._id)}} className=" px-3 py-1 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Cancel</button>
         )}
         {order.status === 'completed' && (
           <span className=" px-6 py-1 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Completed</span>

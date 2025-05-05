@@ -6,15 +6,17 @@ import toast from 'react-hot-toast'
 import { Copy } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useOrderStore } from '../store/orderStore';
+import axiosInstance from '../utils/axios'
 
 const HomePage = () => {
 	const navigate = useNavigate()
   const baseUrl = `${window.location.protocol}//${window.location.host}`
 	const {user} = useAuthStore()
-	const {getPendingBuyOrders, getPendingSellOrders, pendingBuyOrders, pendingSellOrders} = useOrderStore()
+	const {getPendingBuyOrders, getPendingSellOrders, pendingBuyOrders, pendingSellOrders, cancelBuyOrder, cancelSellOrder} = useOrderStore()
 	const refCode = user.referralCode || ''
 	const refLink = `${baseUrl}?ref=${refCode}`
 	const [pendingOrders, setPendingOrders] = useState([])
+  const [selectedTab, setSelectedTab] = useState('sell');
 
 	useEffect(()=>{
 		getPendingBuyOrders()
@@ -24,7 +26,6 @@ const HomePage = () => {
 		}
 	},[getPendingBuyOrders, getPendingSellOrders, pendingSellOrders.length])
 
-	const [selectedTab, setSelectedTab] = useState('sell');
 	
 	const handleCopy = (text)=>{
 		navigator.clipboard.writeText(text)
@@ -40,6 +41,16 @@ const HomePage = () => {
 			setPendingOrders(pendingBuyOrders)
 		}
 	}
+
+  const cancelOrder = async(id)=>{
+    if(selectedTab === 'sell'){
+      await cancelSellOrder(id)
+      setPendingOrders(prev => prev.filter(order => order._id !== id));
+    }else{
+      await cancelBuyOrder(id)
+      setPendingOrders(prev => prev.filter(order => order._id !== id));
+    }
+  }
   return (
     <div className="w-full min-h-screen bg-black px-4 md:px-8 py-6">
       <div className='flex justify-between'>
@@ -228,7 +239,7 @@ const HomePage = () => {
               <p className="font-semibold text-[#D6D7DA] md:mb-16">{order.amount.toLocaleString()}</p>
             <div className="mt-2 md:mt-0 flex items-center gap-4">
               {order.status === 'pending' && (
-                <button className="bg-[#FF596D4D] text-white px-3 py-1 text-sm rounded">Cancel</button>
+                <button onClick={()=>{cancelOrder(order._id)}} className="bg-[#FF596D4D] text-white px-3 py-1 text-sm rounded">Cancel</button>
               )}
             </div>
           </div>
