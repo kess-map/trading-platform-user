@@ -5,6 +5,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { useNavigate } from 'react-router-dom';
 import { Copy } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useOrderStore } from '../store/orderStore';
 
 export default function InvestmentsPage() {
   const navigate = useNavigate()
@@ -13,6 +14,8 @@ export default function InvestmentsPage() {
   const [completedInvestments, setCompletedInvestments] = useState([]);
   const [summary, setSummary] = useState({totalInvested: 0, totalExpectedReturn: 0});
   const [loading, setLoading] = useState(true);
+  const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+  const {reinvestInvestment} = useOrderStore()
 
   const fetchInvestments = async () => {
     try {
@@ -50,6 +53,16 @@ export default function InvestmentsPage() {
   useEffect(() => {
     fetchInvestments()
   }, []);
+
+  const handleReinvest = async(investment)=>{
+    await reinvestInvestment(investment._id)
+
+    setCompletedInvestments((prev) =>
+      prev.filter((inv) => inv._id !== investment._id)
+    );
+  
+    setExpandedCardIndex(null);
+  }
 
   const displayedInvestments = activeTab === 'pending' ? pendingInvestments : completedInvestments;
 
@@ -184,15 +197,42 @@ export default function InvestmentsPage() {
           <p className='text-[#D6D7DA]'>{getRemainingDays(item.investmentEndsAt)}</p>
         </div>
         {activeTab === 'completed' && (
-        <div className="mb-2">
-          <div className="w-full bg-[#EFF9C9] rounded-full h-2.5">
-            <div className="bg-[#445017] h-2.5 rounded-full" style={{ width: `${percentage}%` }}></div>
+          <>
+          <div className="flex justify-center gap-4 px-4 mt-4">
+            <button
+              onClick={() =>
+                setExpandedCardIndex(expandedCardIndex === index ? null : index)
+              }
+              className="text-sm sm:text-base w-full bg-black border border-[#57661F] text-[#57661F] font-semibold px-4 py-2 rounded-md transition"
+            >
+              {expandedCardIndex === index ? 'Hide' : 'View'}
+            </button>
+      
+            <button
+              onClick={() => handleReinvest(item)} // implement this function
+              className="text-sm sm:text-base w-full bg-[#CAEB4B] text-[#1D2308] font-semibold px-4 py-2 rounded-md  transition"
+            >
+              Re-invest
+            </button>
           </div>
-          <div className="flex justify-between mt-1">
-            <p className='text-[#D6D7DA]'>{item.percentage.toFixed(0)}%</p>
-            <p className='text-[#D6D7DA]'>{getRemainingDays(item.countdown)} days left</p>
-          </div>
-        </div>
+      
+          {expandedCardIndex === index && (
+            <>
+              <div className="mt-4 p-4 border border-[#5B6069] rounded-lg bg-[#111] text-white text-center">
+                <p className="text-lg font-semibold mb-2">Time Left Till Capital Release</p>
+                <div className="mb-2">
+                  <div className="w-full bg-[#EFF9C9] rounded-full h-2.5">
+                    <div className="bg-[#445017] h-2.5 rounded-full" style={{ width: `${item.percentage}%` }}></div>
+                  </div>
+                  <div className="flex justify-between mt-1">
+                    <p className='text-[#D6D7DA]'>{item.percentage.toFixed(0)}%</p>
+                    <p className='text-[#D6D7DA]'>{getRemainingDays(item.countdown)} days left</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </>
       )}
       </div>
     </div>

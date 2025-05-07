@@ -5,7 +5,7 @@ const VerificationSuccessPage = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/")
+    navigate("/home")
   };
 
   return (

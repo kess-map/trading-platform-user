@@ -8,6 +8,7 @@ export const useAuthStore = create((set)=> ({
     isLoading: false,
     isCheckingAuth: true,
     message:null,
+    pendingVerification: false,
 
     signup: async(formData)=>{
         set({isLoading: true, error:null})
@@ -25,7 +26,7 @@ export const useAuthStore = create((set)=> ({
         set({isLoading: true, error:null})
         try {
            const response = await axios.post(`/auth/login`, {email, password})
-           set({user: response.data.data, error: null, isAuthenticated: true, isLoading: false})
+           set({user: response.data.data.user, error: null, isAuthenticated: true, isLoading: false})
            return toast.success('Logged In Sucessfully')
         } catch (error) {
             set({isLoading: false})
@@ -65,6 +66,28 @@ export const useAuthStore = create((set)=> ({
         } catch (error) {
             set({ isLoading: false})
             return toast.error(error.response.data.message || 'Error resending verification message')
+        }
+    },
+    uploadIdVerification: async(verificationDetails)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/settings/verification-request`, verificationDetails)
+            set({ isLoading: false})
+            toast.success('Verification request submitted successfully')
+        } catch (error) {
+            set({ isLoading: false})
+            return toast.error(error.response.data.message || 'Error resending verification message')
+        }
+    },
+    requestProfileUpdate: async(profileDetails)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/settings/profile-edit`, profileDetails)
+            set({ isLoading: false})
+            toast.success('Profile update request submitted successfully')
+        } catch (error) {
+            set({ isLoading: false})
+            return toast.error(error.response.data.message || 'Error sending request')
         }
     },
 

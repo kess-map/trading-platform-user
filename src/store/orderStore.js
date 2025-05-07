@@ -87,4 +87,15 @@ export const useOrderStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Something went wrong')
         }
     },
+    reinvestInvestment: async(id)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/investments/reinvest`, {investmentId: id})
+           set({ isLoading: false})
+           return toast.success('Reinvestment successful') 
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Something went wrong')
+        }
+    },
 }))

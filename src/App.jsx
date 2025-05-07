@@ -15,7 +15,9 @@ import CreateBuyOrderForm from './pages/CreateBuyOrderPage'
 import CreateSellOrderForm from './pages/CreateSellOrderPage'
 import InvestmentsPage from './pages/InvestmentsPage'
 import CreateInvestmentPage from './pages/CreateInvestmentPage'
+import AffiliatePage from './pages/AfffiliatePage'
 import Sidebar from './components/Sidebar'
+import SettingsPage from './pages/SettingsPage'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,7 +26,7 @@ function App() {
     const {isAuthenticated, user} = useAuthStore()
   
     if(!isAuthenticated && !user){
-      return <Navigate to={'/login'} replace/>
+      return <Navigate to={'/'} replace/>
     }
   
     return children
@@ -35,7 +37,7 @@ function App() {
     const {isAuthenticated, user} = useAuthStore()
   
     if(isAuthenticated && user.isPhoneVerified){
-      return <Navigate to={'/'} replace/>
+      return <Navigate to={'/home'} replace/>
     }
     return children
   }
@@ -75,7 +77,7 @@ function App() {
                 <VerificationSuccessPage />
               </RedirectAuthenticatedUser>}/>
           
-          <Route index element={
+          <Route path={'/home'} element={
             <ProtectedRoute>
               <HomePage />
             </ProtectedRoute>} />
@@ -98,6 +100,14 @@ function App() {
           <Route path={'/create-investment'} element={
             <ProtectedRoute>
               <CreateInvestmentPage />
+            </ProtectedRoute>} />
+          <Route path={'/affiliate'} element={
+            <ProtectedRoute>
+              <AffiliatePage />
+            </ProtectedRoute>} />
+          <Route path={'/settings'} element={
+            <ProtectedRoute>
+              <SettingsPage />
             </ProtectedRoute>} />
       </Routes>
       <Toaster/>

@@ -12,11 +12,10 @@ const NavbarMain = ({onMenuClick}) => {
       </div>
 
       <ul className="hidden md:flex items-center space-x-6 text-sm font-medium text-white">
-        <li><Link to="/" className="hover:text-primary">Home</Link></li>
+        <li><Link to="/home" className="hover:text-primary">Home</Link></li>
         <li><Link to="/orders" className="hover:text-primary">Orders</Link></li>
         <li><Link to="/investment" className="hover:text-primary">Investment</Link></li>
         <li><Link to="/affiliate" className="hover:text-primary">Affiliate & Referral</Link></li>
-        <li><Link to="/announcement" className="hover:text-primary">Announcement</Link></li>
         <li><Link to="/settings" className="hover:text-primary">Settings</Link></li>
         <li><Link to="/support" className="hover:text-primary">Support</Link></li>
       </ul>

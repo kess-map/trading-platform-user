@@ -51,6 +51,8 @@ const HomePage = () => {
       setPendingOrders(prev => prev.filter(order => order._id !== id));
     }
   }
+
+  if(!user) return <LoadingSpinner/>
   return (
     <div className="w-full min-h-screen bg-black px-4 md:px-8 py-6">
       <div className='flex justify-between'>
@@ -58,7 +60,7 @@ const HomePage = () => {
       <button className='bg-[#CAEB4B] w-40 h-10 rounded-xl font-medium'>Buy/sell token</button>
       </div>
 
-      {!user ? <LoadingSpinner/> : <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 h-50 md:h-36">
+       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 h-50 md:h-36">
           <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
             <p className="text-[rgb(173,175,180)] text-sm">Available Balance</p>
             <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.availableBalance.toLocaleString()} CHT</p>
@@ -75,7 +77,7 @@ const HomePage = () => {
             <p className="text-[#ADAFB4] text-sm">Referral Balance</p>
             <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.referralBonusBalance.toLocaleString()} CHT</p>
           </div>
-      </div>}
+      </div>
 
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <div className="bg-[#303910] p-8 hidden md:flex flex-col justify-between rounded-2xl">

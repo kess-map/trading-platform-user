@@ -26,12 +26,12 @@ const Sidebar = ({ isOpen, onClose }) => {
 
       {/* Nav Links */}
       <nav className="space-y-4 text-sm">
-        <Link to="/orders" className="block hover:text-gray-400">Orders</Link>
-        <Link to="/investment" className="block hover:text-gray-400">Investment</Link>
-        <Link to="/affiliate" className="block hover:text-gray-400">Affiliate & Referral</Link>
-        <Link to="/announcement" className="block hover:text-gray-400">Announcement</Link>
-        <Link to="/settings" className="block hover:text-gray-400">Settings</Link>
-        <Link to="/support" className="block hover:text-gray-400">Support</Link>
+        <Link onClick={onClose} to="/home" className="block hover:text-gray-400">Home</Link>
+        <Link onClick={onClose} to="/orders" className="block hover:text-gray-400">Orders</Link>
+        <Link onClick={onClose} to="/investment" className="block hover:text-gray-400">Investment</Link>
+        <Link onClick={onClose} to="/affiliate" className="block hover:text-gray-400">Affiliate & Referral</Link>
+        <Link onClick={onClose} to="/settings" className="block hover:text-gray-400">Settings</Link>
+        <Link onClick={onClose} to="/support" className="block hover:text-gray-400">Support</Link>
       </nav>
     </div>
   );

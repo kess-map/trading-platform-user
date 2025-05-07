@@ -32,7 +32,7 @@ const SignupPage = () => {
       return toast.error('Fill in all fields')
     }
     await login(formData.email, formData.password)
-    navigate('/')
+    navigate('/home')
   }
 
   return (
