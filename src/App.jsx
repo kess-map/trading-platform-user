@@ -18,6 +18,7 @@ import CreateInvestmentPage from './pages/CreateInvestmentPage'
 import AffiliatePage from './pages/AfffiliatePage'
 import Sidebar from './components/Sidebar'
 import SettingsPage from './pages/SettingsPage'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,6 +45,7 @@ function App() {
 
   const location = useLocation();
 
+  const isLandingPage = location.pathname === '/'
   const showAuthNavbarRoutes = ['/login', '/signup'];
   const isShowAuthNavbarPage = showAuthNavbarRoutes.includes(location.pathname.toLowerCase());
   const isProtectedPage = !['/login', '/signup', '/verify-phone', '/verify-success'].includes(location.pathname.toLowerCase());
@@ -57,9 +59,13 @@ function App() {
     <>
       <div className={`min-h-screen w-full`}>
     {isProtectedPage && isSidebarOpen && <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar}/>}
-      {isShowAuthNavbarPage && <NavbarAuth />}
-      {isProtectedPage && <NavbarMain onMenuClick={toggleSidebar} />}
+      {isShowAuthNavbarPage && !isLandingPage && <NavbarAuth />}
+      {isProtectedPage && !isLandingPage && <NavbarMain onMenuClick={toggleSidebar} />}
       <Routes>
+          <Route index element={
+            <RedirectAuthenticatedUser>
+              <LandingPage/>
+            </RedirectAuthenticatedUser>}/>
           <Route path='/login' element={
             <RedirectAuthenticatedUser>
               <LoginPage/>
