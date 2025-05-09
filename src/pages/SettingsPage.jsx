@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import axiosInstance from '../utils/axios'
 import {useNavigate} from 'react-router-dom'
 
-const tabs = ['Verification', 'Profile', 'Security', 'Notifications'];
+const tabs = ['Verification', 'Profile', 'Security'];
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('Verification');
@@ -36,7 +36,7 @@ const SettingsPage = () => {
         {activeTab === 'Verification' && <VerificationTab />}
         {activeTab === 'Profile' && <ProfileTab />}
         {activeTab === 'Security' && <SecurityTab />}
-        {activeTab === 'Notifications' && <NotificationsTab />}
+        {/* {activeTab === 'Notifications' && <NotificationsTab />} */}
       </div>
     </div>
   );
@@ -384,9 +384,13 @@ const SecurityTab = () => {
   const [changingPassword, setChangingPassword] = useState(false)
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
+  const {changePassword} = useAuthStore()
 
-  const handleSubmit = async()=>{
-
+  const handleSubmit = async(e)=>{
+    e.preventDefault()
+    if(!oldPassword || !newPassword) return toast.error('Fill in all fields')
+    await changePassword({oldPassword, newPassword})
+    setChangingPassword(false)
   }
 return(
   <>
@@ -423,7 +427,7 @@ return(
       <p className='text-[#D6D7DA]'>Password Management</p>
       <button onClick={()=>{setChangingPassword(true)}} className='bg-[#CAEB4B] text-[#1D2308] px-3 py-2 rounded-md'>Change Password</button>
     </div>
-    <div className='flex flex-col p-3 border border-[#282D36] rounded-lg'>
+    {/* <div className='flex flex-col p-3 border border-[#282D36] rounded-lg'>
       <div className='flex items-center gap-4 mb-2'>
         <p className='text-[#D6D7DA]'>Two-factor authentication</p>
         <div className='border border-[#FF4C61] rounded-md p-1'>
@@ -442,10 +446,10 @@ return(
         <button className='bg-[#CAEB4B] text-[#1D2308] px-12 py-2 rounded-md'>Enable</button>
       </div>
 
-    </div>
+    </div> */}
   </div>)}
   </>
 )};
-const NotificationsTab = () => <div className="text-center">Notifications settings go here.</div>;
+// const NotificationsTab = () => <div className="text-center">Notifications settings go here.</div>;
 
 export default SettingsPage;

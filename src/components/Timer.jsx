@@ -11,7 +11,7 @@ const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgC
   const [timer, setTimer] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  const {setIsLive} = useOrderStore()
+  const {setIsLive, setBuyOrderTimer} = useOrderStore()
  
   useEffect(() => {
     fetchSessions();
@@ -20,6 +20,10 @@ const LiveSessionTimer = ({greenBgColor, redBgColour, greenSecBgColor, redSecBgC
   useEffect(() => {
     if (currentSession?.mode === "ongoing") {
       setIsLive(true);
+      const sessionStart = currentSession.session?.start;
+    if (sessionStart) {
+      setBuyOrderTimer(new Date(sessionStart).toISOString());
+    }
     } else {
       setIsLive(false);
     }

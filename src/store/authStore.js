@@ -90,6 +90,17 @@ export const useAuthStore = create((set)=> ({
             return toast.error(error.response.data.message || 'Error sending request')
         }
     },
+    changePassword: async(passwordDetails)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/settings/change-password`, passwordDetails)
+            set({ isLoading: false})
+            toast.success('Password changed successfully')
+        } catch (error) {
+            set({ isLoading: false})
+            return toast.error(error.response.data.message || 'Error changing password')
+        }
+    },
 
     checkAuth: async()=>{
         set({isCheckingAuth: true, error:null})

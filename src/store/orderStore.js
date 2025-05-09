@@ -6,11 +6,14 @@ export const useOrderStore = create((set)=> ({
     isLoading: false,
     pendingBuyOrders: [],
     pendingSellOrders: [],
+    buyOrderTimer: null,
     isLive: false, 
 
     setIsLive: (value)=>{
         set({isLive: value})
     },
+
+    setBuyOrderTimer: (datetime) => set({ buyOrderTimer: datetime }),
 
     getPendingBuyOrders: async()=>{
         set({isLoading: true, error:null})
@@ -93,6 +96,28 @@ export const useOrderStore = create((set)=> ({
             await axios.post(`/investments/reinvest`, {investmentId: id})
            set({ isLoading: false})
            return toast.success('Reinvestment successful') 
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Something went wrong')
+        }
+    },
+    payForOrder: async(id, paymentProof)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/buy-orders/pay/${id}`, paymentProof)
+           set({ isLoading: false})
+           return toast.success('Payment successful') 
+        } catch (error) {
+            set({isLoading: false})
+            return toast.error(error.response.data.message || 'Something went wrong')
+        }
+    },
+    confirmOrderPayment: async(id)=>{
+        set({isLoading: true, error:null})
+        try {
+            await axios.post(`/buy-orders/confirm/${id}`)
+           set({ isLoading: false})
+           return toast.success('Payment confirmed successfully') 
         } catch (error) {
             set({isLoading: false})
             return toast.error(error.response.data.message || 'Something went wrong')
