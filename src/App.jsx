@@ -19,6 +19,7 @@ import AffiliatePage from './pages/AfffiliatePage'
 import Sidebar from './components/Sidebar'
 import SettingsPage from './pages/SettingsPage'
 import LandingPage from './pages/LandingPage'
+import NotificationsPage from './pages/NotificationsPage'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -114,6 +115,10 @@ function App() {
           <Route path={'/settings'} element={
             <ProtectedRoute>
               <SettingsPage />
+            </ProtectedRoute>} />
+          <Route path={'/notifications'} element={
+            <ProtectedRoute>
+              <NotificationsPage />
             </ProtectedRoute>} />
       </Routes>
       <Toaster/>

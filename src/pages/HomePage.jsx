@@ -17,8 +17,15 @@ const HomePage = () => {
 	const refLink = `${baseUrl}?ref=${refCode}`
 	const [pendingOrders, setPendingOrders] = useState([])
   const [selectedTab, setSelectedTab] = useState('sell');
+  const [notifications, setNotifications] = useState([])
+
+  const fetchNotifications = async()=>{
+    const response = await axiosInstance.get('/notifications?limit=4')
+    setNotifications(response.data.data)
+  }
 
 	useEffect(()=>{
+    fetchNotifications()
 		getPendingBuyOrders()
 		getPendingSellOrders()
 		if(pendingSellOrders.length > 0){
@@ -250,24 +257,30 @@ const HomePage = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-4 mb-10">
-        <div>
-          <div className='border border-[#5B6069] rounded-2xl p-8'>
-          <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">Recent notifications</h4>
-          <div className="space-y-2 text-sm">
-            {[
-              'Password Changed Successfully',
-              'Trade Session in Progress',
-              'Investment Completed',
-              'Referral Bonus Credited'
-            ].map((msg, i) => (
-              <div key={i} className="border-b border-[#5B6069] p-3">
-                <p className='text-white'>{msg}</p>
-                <p className="text-xs text-gray-500">April 12, 2025</p>
+          <div>
+            <div className='border border-[#5B6069] rounded-2xl p-8'>
+              <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">Recent notifications</h4>
+              <div className="space-y-2 text-sm">
+                {notifications.length === 0 ? (
+                  <p className="text-[#ADAFB4]">No notifications yet.</p>
+                ) : (
+                  notifications.map((not, i) => (
+                    <div key={i} className="border-b border-[#5B6069]">
+                      <p className='text-lg text-[#D6D7DA] mb-2'>{not.title}</p>
+                      <p className='text-[#D6D7DA] truncate mb-2'>{not.content}</p>
+                      <p className="text-xs text-[#ADAFB4]">
+                        {new Date(not.createdAt).toLocaleDateString('en-GB', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </p>
+                    </div>
+                  ))
+                )}
               </div>
-            ))}
+            </div>
           </div>
-          </div>
-        </div>
         <div className='border border-[#5B6069] rounded-2xl p-8'>
           <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">New announcements</h4>
           <div className="space-y-2 text-sm">
