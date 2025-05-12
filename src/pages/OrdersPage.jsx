@@ -3,6 +3,7 @@ import LiveSessionTimer from '../components/Timer';
 import axiosInstance from '../utils/axios';
 import LoadingSpinner from '../components/LoadingSpinner'
 import { useOrderStore } from '../store/orderStore';
+import { useAuthStore } from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { Copy } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -20,8 +21,12 @@ export default function MyOrdersOverview() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [paymentProof, setPaymentProof] = useState('');
   const [viewModal, setViewModal] = useState(false)
+  const [appealModal, setAppealModal] = useState(null)
+  const [reason, setReason] = useState('');
+  const [description, setDescription] = useState('');
 
   const {isLive, cancelSellOrder, cancelBuyOrder, buyOrderTimer, payForOrder, confirmOrderPayment} = useOrderStore()
+  const {user} = useAuthStore()
 
   const fetchOrders = async()=>{
     const res = await axiosInstance.get('/buy-orders/all')
@@ -98,8 +103,78 @@ const handleConfirmPayment = async(orderId)=>{
   }
 }));
 }
+
+const handleAppealSubmit = async()=>{
+  if(!reason) return toast.error('Please select a reason for appeal')
+
+  if(!appealModal) return toast.error('Select an order to appeal')
+
+  const appealedBy = appealModal.buyer === user._id ? appealModal.buyer._id : appealModal.seller._id
+
+  const appealedAgainst = appealModal.buyer === user._id ? appealModal.seller._id : appealModal.buyer._id
+
+  await axiosInstance.post('/appeals', {appealedBy, appealedAgainst, order:appealModal._id, reason, description: description ? description : 'None'})
+
+  toast.success('Order Appeal Submitted successfully')
+}
   return (
     <div className="p-4 md:p-8 min-h-screen w-full max-w-full overflow-x-hidden bg-black">
+      {appealModal && (
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+            <div className="bg-black p-6 rounded-2xl w-[90%] max-w-md text-white text-left shadow-xl">
+              <h2 className="text-2xl font-bold mb-4 text-center">Appeal order #{appealModal._id}</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="text-sm">
+                  <label className="block mb-1">Reason</label>
+                  <select
+                    required
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                    className="w-full bg-black border border-gray-700 px-4 py-2 rounded-md"
+                  >
+                    <option value="">Select reason</option>
+                    <option value="Late confirmation">Late confirmation</option>
+                    <option value="Payment not received">Payment not received</option>
+                    <option value="Payment not received">Payment not confirmed</option>
+                    <option value="Fake proof">Fake proof</option>
+                    <option value="User unresponsive">User unresponsive</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="text-sm">
+                  <label className="block mb-1">Description</label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="w-full bg-transparent border border-gray-700 px-4 py-2 rounded-md resize-none"
+                  />
+                </div>
+
+                <div className="flex justify-between mt-6">
+                  <button
+                    type="button"
+                    onClick={()=>setAppealModal(null)}
+                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    onClick={handleAppealSubmit}
+                    className="px-4 py-2 bg-lime-400 text-black font-medium rounded-md hover:bg-lime-300"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
       {viewModal && (
           <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
             <div className="bg-black p-6 rounded-2xl w-[90%] max-w-md text-center shadow-xl mb-5">
@@ -224,8 +299,8 @@ const handleConfirmPayment = async(orderId)=>{
 
   {!orders ? <LoadingSpinner size={'h-full'}/> :<div className="space-y-4">
     {orders[`${orderType}Orders`][activeTab].map((order) => {
-  const isMatched = order.sellOrder && order.buyOrder; // matched order
-  const displayOrder = isMatched ? order.sellOrder : order; // show sellOrder info if matched
+  const isMatched = order.sellOrder && order.buyOrder;
+  const displayOrder = isMatched ? order.sellOrder : order;
 
   return (
     <div key={order._id} className="border rounded p-4 flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -292,7 +367,7 @@ const handleConfirmPayment = async(orderId)=>{
                   </div>}
                 </div>
                 <div className='flex justify-end'>
-                <button disabled={getRemainingMinutes(order.paidAt) > 0} className={`${getRemainingMinutes(order.paidAt) <= 0 ? 'bg-[#E0742B4D] text-[#E0742B]' : 'bg-[#5B6069] text-[#D6D7DA]'} px-20 py-3 text-sm rounded-lg`}>Appeal</button>
+                <button onClick={()=>{setAppealModal(order)}} disabled={getRemainingMinutes(order.paidAt) > 0} className={`${getRemainingMinutes(order.paidAt) <= 0 ? 'bg-[#E0742B4D] text-[#E0742B]' : 'bg-[#5B6069] text-[#D6D7DA]'} px-20 py-3 text-sm rounded-lg`}>Appeal</button>
                 </div>
               </div>
             )}
@@ -319,7 +394,7 @@ const handleConfirmPayment = async(orderId)=>{
                 <div className='flex justify-end gap-3'>
                 <button onClick={()=>{setSelectedOrder(order.matchedOrder)
                   setViewModal(true)}} className="bg-[#8C55C11A] text-[#8C55C1] px-5 py-3 text-sm rounded-lg">View payment</button>
-                <button className="bg-[#E0742B33] text-[#E0742B] px-5 py-3 text-sm rounded-lg">Appeal</button>
+                <button onClick={()=>{setAppealModal(order)}} className="bg-[#E0742B33] text-[#E0742B] px-5 py-3 text-sm rounded-lg">Appeal</button>
                 <button onClick={()=>{handleConfirmPayment(order._id)}} className="bg-[#CAEB4B] text-[#1D2308] px-5 py-3 text-sm rounded-lg">Confirm Payment</button>
                 </div>
               </div>

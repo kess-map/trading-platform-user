@@ -25,9 +25,9 @@ const NavbarMain = ({onMenuClick}) => {
       <div className="flex items-center space-x-4">
         <Link to={'/notifications'}><Bell className="w-5 h-5 text-black fill-white cursor-pointer" /></Link>
         <Moon className="w-5 h-5 text-black fill-white cursor-pointer" />
-        <div className="w-8 h-8 rounded-full bg-purple-300 text-white flex items-center justify-center font-bold">
+        {user && <div className="w-8 h-8 rounded-full bg-purple-300 text-white flex items-center justify-center font-bold">
           {user.username.charAt(0).toUpperCase()}
-        </div>
+        </div>}
       </div>
     </nav>
   );

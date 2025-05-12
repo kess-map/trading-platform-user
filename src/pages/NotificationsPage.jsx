@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axios';
+import { useNavigate } from 'react-router-dom';
 
 const categories = ['All', 'Orders', 'Investments', 'Settings'];
 
 const NotificationsPage = () => {
+  const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredNotifications, setFilteredNotifications] = useState([]);
   const [notifications, setNotifications] = useState([])
@@ -31,7 +33,7 @@ const NotificationsPage = () => {
   return (
     <div className="p-6 text-white bg-[#0A0F0D] min-h-screen">
         <div className='flex items-start gap-4'>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg onClick={()=>navigate('/')} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="40" height="40" rx="20" fill="#EEDDFF"/>
             <path d="M10 20H30M10 20L15.7143 26M10 20L15.7143 14" stroke="#8C55C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
