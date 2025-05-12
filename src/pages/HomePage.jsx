@@ -70,19 +70,19 @@ const HomePage = () => {
        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 h-50 md:h-36">
           <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
             <p className="text-[rgb(173,175,180)] text-sm">Available Balance</p>
-            <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.availableBalance.toLocaleString()} CHT</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.availableBalance.toLocaleString()} CHT</p>
           </div>
           <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
             <p className="text-[#ADAFB4] text-sm">Total Balance</p>
-            <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{(user.availableBalance + user.stakedBalance).toLocaleString()} CHT</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{(user.availableBalance + user.stakedBalance).toLocaleString()} CHT</p>
           </div>
           <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
             <p className="text-[#ADAFB4] text-sm">Staked Balance</p>
-            <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.stakedBalance.toLocaleString()} CHT</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.stakedBalance.toLocaleString()} CHT</p>
           </div>
           <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
             <p className="text-[#ADAFB4] text-sm">Referral Balance</p>
-            <p className="text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.referralBonusBalance.toLocaleString()} CHT</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.referralBonusBalance.toLocaleString()} CHT</p>
           </div>
       </div>
 
@@ -267,7 +267,7 @@ const HomePage = () => {
                   notifications.map((not, i) => (
                     <div key={i} className="border-b border-[#5B6069]">
                       <p className='text-lg text-[#D6D7DA] mb-2'>{not.title}</p>
-                      <p className='text-[#D6D7DA] truncate mb-2'>{not.content}</p>
+                      <p className='text-[#D6D7DA] mb-2 w-full'>{not.content}</p>
                       <p className="text-xs text-[#ADAFB4]">
                         {new Date(not.createdAt).toLocaleDateString('en-GB', {
                           year: 'numeric',
