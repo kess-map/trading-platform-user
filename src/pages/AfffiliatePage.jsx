@@ -21,7 +21,6 @@ const AffiliatePage = () => {
         try {
           setLoading(true)
           const res = await axiosInstance.get('/investments/referrals')
-          console.log(res.data.referralList)
           setReferrals(res.data.referralList);
         } catch (err) {
           toast.error(err.response.data.message || 'Something went wrong')
@@ -104,14 +103,14 @@ const AffiliatePage = () => {
       </div>
       <div className="overflow-x-auto bg-black rounded-xl">
       <h3 className="text-lg font-semibold text-[#EBEBEC] mb-3 pt-4">Referral list</h3>
-      <div className='border border-[#5B6069] rounded-3xl p-4'>
+      <div className='border border-[#5B6069] rounded-3xl p-4 overflow-x-auto'>
             {referrals.length === 0 ? (
                 <div className="bg-black rounded-xl py-16 px-6 text-center">
                 <h3 className="text-xl font-semibold text-white mb-2">No referrals yet</h3>
                 <p className="text-[#ADAFB4] mb-4">
                 Share your referral link and earn bonuses when your referees invest.
                 </p>
-                <div className="inline-flex items-center gap-2 bg-[#1f1f1f] border border-[#444] rounded-lg px-4 py-2">
+                <div className="flex justify-between sm:inline-flex items-center gap-2 bg-[#1f1f1f] border border-[#444] rounded-lg px-4 py-2">
                 <span className="text-[#D6D7DA] text-sm truncate">{refLink}</span>
                 <button
                     onClick={() => handleCopy(refLink)}

@@ -64,9 +64,7 @@ function App() {
       {isProtectedPage && !isLandingPage && <NavbarMain onMenuClick={toggleSidebar} />}
       <Routes>
           <Route index element={
-            <RedirectAuthenticatedUser>
-              <LandingPage/>
-            </RedirectAuthenticatedUser>}/>
+              <LandingPage/>}/>
           <Route path='/login' element={
             <RedirectAuthenticatedUser>
               <LoginPage/>
@@ -120,6 +118,7 @@ function App() {
             <ProtectedRoute>
               <NotificationsPage />
             </ProtectedRoute>} />
+          <Route path={'*'} element={<Navigate to={'/'}/>} />
       </Routes>
       <Toaster/>
       </div>

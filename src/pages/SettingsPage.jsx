@@ -139,11 +139,11 @@ const VerificationTab = () => {
       <><div className="bg-[#57661F4D] text-green-500 p-4 rounded-lg w-full">
         <div className="flex items-center space-x-2 mb-1">
           <CheckCircle className="w-4 h-4" />
-          <span className='text-[#57661F]'>Verified users can create up to 10 sell orders</span>
+          <span className='text-[#57661F] text-sm md:text-base'>Verified users can create up to 10 sell orders</span>
         </div>
         <div className="flex items-center space-x-2">
           <CheckCircle className="w-4 h-4" />
-          <span className='text-[#57661F]'>Earn from referrals</span>
+          <span className='text-[#57661F] text-sm md:text-base'>Earn from referrals</span>
         </div>
       </div>
 
@@ -405,21 +405,21 @@ return(
     </div>
     <div className='flex flex-col gap-4 mt-4 mb-4'>
     <div className='flex justify-between gap-4'>
-        <div className='flex flex-col w-1/3'>
+        <div className='flex flex-col w-full md:w-1/3'>
         <label className='text-[#ADAFB4] mb-2'>Old Password</label>
         <input type='text' value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)} placeholder='********' className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
         </div>
       </div>
       <div className='flex justify-between gap-4'>
-        <div className='flex flex-col w-1/3'>
+        <div className='flex flex-col w-full md:w-1/3'>
         <label className='text-[#ADAFB4] mb-2'>New Password</label>
         <input type='text' value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} placeholder='********' className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
         </div>
       </div>
     </div>
-    <div className='flex justify-start gap-9'>
-      <button onClick={()=>{setChangingPassword(false)}} className='bg-black border border-[#57661F] text-[#57661F] px-16 py-2 rounded-md'>Cancel</button>
-      <button onClick={handleSubmit} className='bg-[#CAEB4B] text-[#1D2308] px-16 py-2 rounded-md text-sm'>Save Password</button>
+    <div className='flex justify-center md:justify-start gap-9'>
+      <button onClick={()=>{setChangingPassword(false)}} className='bg-black border border-[#57661F] text-[#57661F] px-8 md:px-16 py-2 rounded-md'>Cancel</button>
+      <button onClick={handleSubmit} className='bg-[#CAEB4B] text-[#1D2308] px-8 md:px-16 py-2 rounded-md text-sm'>Save Password</button>
     </div>
   </div>) : 
     (<div className='flex flex-col gap-4'>
