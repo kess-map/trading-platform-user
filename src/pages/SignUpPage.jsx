@@ -32,8 +32,9 @@ const SignupPage = () => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
+    console.log(formData)
     
-    if(!formData.fullName || !formData.username || !formData.countryCode || !formData.phoneNumber || !formData.email || !formData.country || !formData.password || !formData .confirmPassword){
+    if(!formData.fullName || !formData.username || !formData.countryCode || !formData.phoneNumber || !formData.email || !formData.country || !formData.password || !formData.confirmPassword){
       return toast.error('Please fill in all fields')
     }
 
@@ -98,14 +99,17 @@ const SignupPage = () => {
               <label className="text-sm mb-1 block text-[#ADAFB4]">Phone number</label>
               <input
                 type="tel"
-                name='phoneNumber'
-                value={formData.phoneNumber}
+                name='countryCode'
+                value={formData.countryCode}
                 onChange={handleChange}
                 placeholder="+234"
                 className="w-1/6 md:w-1/4 mr-2 px-1 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
               />
               <input
                 type="tel"
+                name='phoneNumber'
+                value={formData.phoneNumber}
+                onChange={handleChange}
                 placeholder="080123456789"
                 className="w-3/4 md:w-4/6 px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
               />
@@ -127,9 +131,9 @@ const SignupPage = () => {
             <label className="text-sm mb-1 block text-[#ADAFB4]">Country</label>
             <select name='country' value={formData.country} onChange={handleChange} className="w-full px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 text-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400">
               <option value="">Select</option>
-              <option value="NG">Nigeria</option>
-              <option value="GH">Ghana</option>
-              <option value="KE">Kenya</option>
+              <option value="nigeria">Nigeria</option>
+              <option value="ghana">Ghana</option>
+              <option value="kenya">Kenya</option>
             </select>
           </div>
 
