@@ -284,12 +284,14 @@ const HomePage = () => {
         <div className='border border-[#5B6069] rounded-2xl p-8'>
           <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">New announcements</h4>
           <div className="space-y-2 text-sm">
-            {[1, 2, 3].map(i => (
+            {[].length === 0 ? (
+                  <p className="text-[#ADAFB4]">No announcements yet.</p>
+                ) : ( [].map(i => (
               <div key={i} className="border-b border-[#5B6069] p-3 ">
                 <p className='text-white'>Earn More with Our New Referral Boost!</p>
                 <p className="text-xs text-gray-500">April 20, 2025 11:00am</p>
               </div>
-            ))}
+            )))}
           </div>
         </div>
       </div>
