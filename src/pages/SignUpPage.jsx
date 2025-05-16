@@ -45,12 +45,17 @@ const SignupPage = () => {
       toast.error('Please read and accept the terms and conditions')
     }
 
-    let sanitizedNumber = formData.phoneNumber
-    if(sanitizedNumber.startsWith('0')){
-      sanitizedNumber = sanitizedNumber.slice(1)
+    let sanitizedPhoneNumber = formData.phoneNumber
+    if(sanitizedPhoneNumber.startsWith('0')){
+      sanitizedPhoneNumber = sanitizedPhoneNumber.slice(1)
     }
 
-    const fullPhoneNumber = `${formData.countryCode}${sanitizedNumber}`
+    let sanitizedCountryCode = formData.countryCode
+    if(sanitizedCountryCode.startsWith('+')){
+      sanitizedCountryCode = sanitizedCountryCode.slice(1)
+    }
+
+    const fullPhoneNumber = `${sanitizedCountryCode}${sanitizedPhoneNumber}`
     await signup({...formData, phoneNumber: fullPhoneNumber})
     navigate('/verify-phone')
   }
