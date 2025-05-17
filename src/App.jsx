@@ -20,6 +20,7 @@ import Sidebar from './components/Sidebar'
 import SettingsPage from './pages/SettingsPage'
 import LandingPage from './pages/LandingPage'
 import NotificationsPage from './pages/NotificationsPage'
+import SupportPage from './pages/SupportPage'
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -117,6 +118,10 @@ function App() {
           <Route path={'/notifications'} element={
             <ProtectedRoute>
               <NotificationsPage />
+            </ProtectedRoute>} />
+          <Route path={'/support'} element={
+            <ProtectedRoute>
+              <SupportPage />
             </ProtectedRoute>} />
           <Route path={'*'} element={<Navigate to={'/'}/>} />
       </Routes>
