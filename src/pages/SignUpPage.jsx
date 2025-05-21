@@ -11,8 +11,7 @@ const SignupPage = () => {
   const {signup, isLoading} = useAuthStore()
   const [formData, setFormData] = useState({
     fullName: '',
-    username: '',
-    countryCode: '', 
+    username: '', 
     phoneNumber: '',
     email: '',
     country: '',
@@ -33,7 +32,7 @@ const SignupPage = () => {
   const handleSubmit = async(e)=>{
     e.preventDefault()
     
-    if(!formData.fullName || !formData.username || !formData.countryCode || !formData.phoneNumber || !formData.email || !formData.country || !formData.password || !formData.confirmPassword){
+    if(!formData.fullName || !formData.username || !formData.phoneNumber || !formData.email || !formData.country || !formData.password || !formData.confirmPassword){
       return toast.error('Please fill in all fields')
     }
 
@@ -45,18 +44,7 @@ const SignupPage = () => {
       toast.error('Please read and accept the terms and conditions')
     }
 
-    let sanitizedPhoneNumber = formData.phoneNumber
-    if(sanitizedPhoneNumber.startsWith('0')){
-      sanitizedPhoneNumber = sanitizedPhoneNumber.slice(1)
-    }
-
-    let sanitizedCountryCode = formData.countryCode
-    if(sanitizedCountryCode.startsWith('+')){
-      sanitizedCountryCode = sanitizedCountryCode.slice(1)
-    }
-
-    const fullPhoneNumber = `${sanitizedCountryCode}${sanitizedPhoneNumber}`
-    await signup({...formData, phoneNumber: fullPhoneNumber})
+    await signup(formData)
     navigate('/verify-phone')
   }
 
@@ -98,19 +86,11 @@ const SignupPage = () => {
               <label className="text-sm mb-1 block text-[#ADAFB4]">Phone number</label>
               <input
                 type="tel"
-                name='countryCode'
-                value={formData.countryCode}
-                onChange={handleChange}
-                placeholder="+234"
-                className="w-1/6 md:w-1/4 mr-2 px-1 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
-              />
-              <input
-                type="tel"
                 name='phoneNumber'
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 placeholder="080123456789"
-                className="w-3/4 md:w-4/6 px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                className="w-full px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
               />
             </div>
             <div className="w-full md:w-1/2">
