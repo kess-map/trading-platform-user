@@ -25,7 +25,7 @@ const VerificationSuccessPage = () => {
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-          Phone number verification successful!
+          Email verification successful!
         </h1>
         <p className="text-white mb-6 text-sm sm:text-base">
           Go maximize your earnings
