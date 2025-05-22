@@ -8,7 +8,7 @@ const AffiliatePage = () => {
     const baseUrl = `${window.location.protocol}//${window.location.host}`
 	const {user} = useAuthStore()
 	const refCode = user.referralCode || ''
-	const refLink = `${baseUrl}?ref=${refCode}`
+	const refLink = `${baseUrl}/signup?ref=${refCode}`
     const [referrals, setReferrals] = useState([]);
     const [referralCount, setReferralCount] = useState({
         totalReferrals: 0,

@@ -14,7 +14,7 @@ const HomePage = () => {
 	const {user} = useAuthStore()
 	const {getPendingBuyOrders, getPendingSellOrders, pendingBuyOrders, pendingSellOrders, cancelBuyOrder, cancelSellOrder} = useOrderStore()
 	const refCode = user.referralCode || ''
-	const refLink = `${baseUrl}?ref=${refCode}`
+	const refLink = `${baseUrl}/signup?ref=${refCode}`
 	const [pendingOrders, setPendingOrders] = useState([])
   const [selectedTab, setSelectedTab] = useState('sell');
   const [notifications, setNotifications] = useState([])
