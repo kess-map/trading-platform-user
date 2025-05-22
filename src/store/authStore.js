@@ -16,6 +16,7 @@ export const useAuthStore = create((set)=> ({
            const response = await axios.post(`/auth/signup`, formData)
            set({user: response.data.data.user, error: null, isAuthenticated: true, isLoading: false})
            toast.success(response.data.message)
+           return response
         } catch (error) {
             set({isLoading: false})
             return toast.error(error.response.data.message || 'Error Signing In')
@@ -45,24 +46,25 @@ export const useAuthStore = create((set)=> ({
         }
     },
 
-    verifyPhoneNumber: async(phoneNumber, code)=>{
+    verifyPhoneNumber: async(email, code)=>{
         set({isLoading: true, error:null})
         try {
-            await axios.post(`/auth/verify-otp`, {phoneNumber, code})
+            const response = await axios.post(`/auth/verify-otp`, {email, code})
             set({isLoading: false})
             toast.success('Phone Number Verified Successfully')
+            return response
         } catch (error) {
             set({isLoading: false})
             return toast.error(error.response.data.message || 'Error Verifying phone number')
         }
     },
 
-    resendVerificationMessage: async(phoneNumber)=>{
+    resendVerificationMessage: async(email)=>{
         set({isLoading: true, error:null})
         try {
-            await axios.post(`/auth/resend-otp`, {phoneNumber})
+            await axios.post(`/auth/resend-otp`, {email})
             set({ isLoading: false})
-            toast.success('Code has been resent to your number')
+            toast.success('Code has been resent to your email')
         } catch (error) {
             set({ isLoading: false})
             return toast.error(error.response.data.message || 'Error resending verification message')

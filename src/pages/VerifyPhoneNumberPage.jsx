@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Loader } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
-import toast from 'react-hot-toast'
 
 const VerifyPhoneNumberPage = () => {
   const [code, setCode] = useState(['', '', '', '', '', ''])
@@ -42,15 +41,17 @@ const VerifyPhoneNumberPage = () => {
     e.preventDefault()
     const verificationCode = code.join('')
     try {
-      await verifyPhoneNumber(user.phoneNumber, verificationCode)
-      navigate('/verify-success')
+      const res = await verifyPhoneNumber(user.email, verificationCode)
+      if(res.status === 200){
+        navigate('/verify-success')
+      }
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleResendVerificationMessage = async () => {
-    await resendVerificationMessage(user.phoneNumber)
+    await resendVerificationMessage(user.email)
   }
 
   return (
@@ -62,10 +63,10 @@ const VerifyPhoneNumberPage = () => {
         className="w-full max-w-md bg-black border border-zinc-700 p-8 sm:p-10 rounded-2xl shadow-2xl"
       >
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white">
-          Verify Phone Number
+          Verify Email
         </h2>
         <p className="text-center text-white mb-6 text-sm sm:text-base">
-          Enter the 6-digit code sent to your phone number
+          Enter the 6-digit code sent to your email
         </p>
 
         <form className="space-y-6" onSubmit={handleSubmit}>

@@ -44,8 +44,11 @@ const SignupPage = () => {
       toast.error('Please read and accept the terms and conditions')
     }
 
-    await signup(formData)
-    navigate('/verify-phone')
+    const res = await signup(formData)
+
+    if(res.status === 200){
+      navigate('/verify-phone')
+    }
   }
 
   return (
@@ -165,7 +168,7 @@ const SignupPage = () => {
             disabled={isLoading}
             className="w-full mt-4 bg-lime-400 text-black font-semibold py-2 rounded-md hover:bg-lime-300 transition"
           >
-            Create account
+            {isLoading ?  'Loading...' : 'Create Account'}
           </button>
         </form>
       </div>
