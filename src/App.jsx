@@ -81,6 +81,10 @@ function App() {
                 <VerificationSuccessPage />
               </RedirectAuthenticatedUser>}/>
           
+          {isCheckingAuth ? 
+          <Route path='*' element={
+            <LoadingSpinner/>
+            } /> : <>
           <Route path={'/home'} element={
             <ProtectedRoute>
               <HomePage />
@@ -122,6 +126,7 @@ function App() {
               <SupportPage />
             </ProtectedRoute>} />
           <Route path={'*'} element={<Navigate to={'/'}/>} />
+          </>}
       </Routes>
       <Toaster/>
       </div>

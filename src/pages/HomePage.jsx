@@ -61,51 +61,51 @@ const HomePage = () => {
 
   if(!user) return <LoadingSpinner/>
   return (
-    <div className="w-full min-h-screen bg-black px-4 md:px-8 py-6">
+    <div className="w-full min-h-screen px-4 md:px-8 py-6">
       <div className='flex justify-between'>
-      <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#EBEBEC]">Welcome, {user.username}</h2>
+      <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#1E2229]">Welcome, {user.username}</h2>
       <button className='bg-[#CAEB4B] w-40 h-10 rounded-xl font-medium'>Buy/sell token</button>
       </div>
 
        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 h-50 md:h-36">
-          <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
-            <p className="text-[rgb(173,175,180)] text-sm">Available Balance</p>
-            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.availableBalance.toLocaleString()} CHT</p>
+          <div className="flex flex-col justify-between border border-[#D6D7DA] p-4 rounded-xl">
+            <p className="text-[#5B6069] text-md md:text-xl">Available Balance</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#323844] font-semibold">{user.availableBalance.toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
-          <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
-            <p className="text-[#ADAFB4] text-sm">Total Balance</p>
-            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{(user.availableBalance + user.stakedBalance).toLocaleString()} CHT</p>
+          <div className="flex flex-col justify-between border border-[#D6D7DA] p-4 rounded-xl">
+            <p className="text-[#5B6069] text-md md:text-xl">Total Balance</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#323844] font-semibold">{(user.availableBalance + user.stakedBalance).toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
-          <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
-            <p className="text-[#ADAFB4] text-sm">Staked Balance</p>
-            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.stakedBalance.toLocaleString()} CHT</p>
+          <div className="flex flex-col justify-between border border-[#D6D7DA] p-4 rounded-xl">
+            <p className="text-[#5B6069] text-md md:text-xl">Staked Balance</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#323844] font-semibold">{user.stakedBalance.toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
-          <div className="flex flex-col justify-between border border-[#5B6069] p-4 rounded-xl">
-            <p className="text-[#ADAFB4] text-sm">Referral Balance</p>
-            <p className="text-xl md:text-3xl mb-4 text-[#D6D7DA] font-semibold">{user.referralBonusBalance.toLocaleString()} CHT</p>
+          <div className="flex flex-col justify-between border border-[#D6D7DA] p-4 rounded-xl">
+            <p className="text-[#5B6069] text-md md:text-xl">Referral Balance</p>
+            <p className="text-xl md:text-3xl mb-4 text-[#323844] font-semibold">{user.referralBonusBalance.toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4 mb-6">
-        <div className="bg-[#303910] p-8 hidden md:flex flex-col justify-between rounded-2xl">
+        <div className="bg-[#D5EF6F] p-8 hidden md:flex flex-col justify-between rounded-2xl">
           <div className='flex justify-between'>
 
           <div >
           <div >
-            <h3 className="font-bold text-[#EBEBEC] text-2xl mb-4">Earn up to 100% ROI on investment</h3>
+            <h3 className="font-bold text-[#1E2229] text-2xl mb-4">Earn up to 100% ROI on investment</h3>
             <div className='flex justify-between'>
             <div className='flex flex-col gap-4'>
               <div className='flex'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='mr-2'>
                 <path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM17.2969 9.79688L11.2969 15.7969C10.8562 16.2375 10.1438 16.2375 9.70781 15.7969L6.70781 12.7969C6.26719 12.3562 6.26719 11.6438 6.70781 11.2078C7.14844 10.7719 7.86094 10.7672 8.29688 11.2078L10.5 13.4109L15.7031 8.20312C16.1437 7.7625 16.8562 7.7625 17.2922 8.20312C17.7281 8.64375 17.7328 9.35625 17.2922 9.79219L17.2969 9.79688Z" fill="#7D922D"/>
                 </svg>
-                <p className='text-[#D6D7DA]'>Acquire tokens</p>
+                <p className='text-[#323844]'>Acquire tokens</p>
               </div>
               <div className='flex'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='mr-2'>
                 <path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM17.2969 9.79688L11.2969 15.7969C10.8562 16.2375 10.1438 16.2375 9.70781 15.7969L6.70781 12.7969C6.26719 12.3562 6.26719 11.6438 6.70781 11.2078C7.14844 10.7719 7.86094 10.7672 8.29688 11.2078L10.5 13.4109L15.7031 8.20312C16.1437 7.7625 16.8562 7.7625 17.2922 8.20312C17.7281 8.64375 17.7328 9.35625 17.2922 9.79219L17.2969 9.79688Z" fill="#7D922D"/>
                 </svg>
-                <p className='text-[#D6D7DA]'>Stake & Earn</p>
+                <p className='text-[#323844]'>Stake & Earn</p>
               </div>
             </div>
               <button onClick={()=>navigate('/investment')} className="bg-[#57661F] text-white px-4 py-2 rounded-xl mt-4 w-fit">Invest Now</button>
@@ -114,17 +114,17 @@ const HomePage = () => {
           </div>
         <div>
         <svg width="141" height="153" viewBox="0 0 141 153" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M70.5 141C109.436 141 141 109.436 141 70.5001C141 31.5639 109.436 0 70.5 0C31.5639 0 0 31.5639 0 70.5001C0 109.436 31.5639 141 70.5 141Z" fill="#EAF7B7" fill-opacity="0.5"/>
-          <path d="M79.7297 60.6726C86.3915 54.0108 86.3915 43.2099 79.7297 36.5481C73.0679 29.8864 62.2671 29.8864 55.6053 36.5481C48.9435 43.2099 48.9435 54.0108 55.6053 60.6726C62.2671 67.3343 73.0679 67.3343 79.7297 60.6726Z" fill="#DC891A"/>
-          <path d="M77.6294 60.6716C84.2911 54.0098 84.2911 43.2089 77.6294 36.5472C70.9676 29.8854 60.1667 29.8854 53.505 36.5472C46.8432 43.2089 46.8432 54.0098 53.505 60.6716C60.1667 67.3334 70.9676 67.3334 77.6294 60.6716Z" fill="#FFB327"/>
-          <path d="M65.2862 52.6176C64.7565 52.6176 64.3044 52.4292 63.9301 52.0525C63.5557 51.6758 63.3686 51.2226 63.3686 50.6928C63.3686 50.163 63.5569 49.711 63.9336 49.3367C64.3103 48.9623 64.764 48.7752 65.2945 48.7752C65.8251 48.7752 66.2772 48.9639 66.6507 49.3414C67.0242 49.7189 67.2114 50.1722 67.2122 50.7011C67.213 51.2301 67.0242 51.6822 66.6459 52.0573C66.2676 52.4324 65.8144 52.6196 65.2862 52.6188M60.9775 43.4219H69.6021L71.1188 40.3421C71.287 40.0225 71.2798 39.7124 71.0974 39.4118C70.915 39.1112 70.6414 38.9609 70.2766 38.9609H60.303C59.9382 38.9609 59.6646 39.1112 59.4821 39.4118C59.2997 39.7124 59.2926 40.0229 59.4607 40.3433L60.9775 43.4219ZM61.282 57.9946H69.2976C70.8282 57.9946 72.1288 57.4589 73.1995 56.3874C74.2709 55.316 74.8066 54.013 74.8066 52.4784C74.8066 51.8376 74.6968 51.2135 74.4771 50.606C74.2574 49.9985 73.9402 49.4453 73.5254 48.9465L69.9066 44.6116H60.6729L57.0542 48.9465C56.6394 49.4453 56.3222 49.9985 56.1025 50.606C55.8828 51.2127 55.773 51.8368 55.773 52.4784C55.773 54.013 56.3087 55.316 57.3801 56.3874C58.4516 57.4589 59.7522 57.9946 61.282 57.9946Z" fill="white"/>
-          <path d="M55.7722 30.2587C54.7497 28.6123 53.654 27.0157 52.4859 25.4693C51.9248 24.7264 50.7091 25.5248 51.2751 26.2741C52.4433 27.8204 53.5388 29.4172 54.5614 31.0634C55.0551 31.8586 56.2663 31.0545 55.7722 30.2587Z" fill="#DC891A"/>
-          <path d="M63.8198 28.7857C63.4193 26.7515 63.2157 24.6853 63.178 22.6131C63.1609 21.6771 61.7098 21.7625 61.7268 22.6968C61.767 24.9048 62.0165 27.086 62.4427 29.2521C62.6225 30.166 63.9984 29.6931 63.8198 28.7857Z" fill="#DC891A"/>
-          <path d="M71.1682 23.0976C70.1889 24.7757 69.4848 26.5877 69.0628 28.484C68.8592 29.3986 70.2813 29.702 70.4844 28.7889C70.8809 27.0078 71.5439 25.3334 72.4635 23.7578C72.9364 22.9476 71.638 22.2924 71.1682 23.0976Z" fill="#DC891A"/>
-          <path d="M81.4472 25.1266C79.8759 26.7223 78.5281 28.5098 77.4097 30.4496C76.9411 31.2624 78.2391 31.9178 78.705 31.1097C79.7632 29.2744 81.0465 27.6028 82.5326 26.0934C83.1903 25.4254 82.1025 24.461 81.4472 25.1266Z" fill="#DC891A"/>
-          <path d="M111.98 41.0654L99.2335 45.1868L102.889 48.8377L76.2822 74.7263L53.5986 69.4395L21.7238 106.547L24.9596 109.144L54.9908 73.3385L77.4647 79.0862L104.782 50.7274L108.067 54.0082L111.98 41.0654Z" fill="#57661F" fill-opacity="0.7"/>
-          <path d="M120.155 144.585V65.964C120.155 64.8849 119.272 64.002 118.193 64.002H99.072C97.9929 64.002 97.1099 64.8849 97.1099 65.964V144.585H94.6324V87.9794C94.6324 86.9003 93.7494 86.0174 92.6703 86.0174H73.5491C72.47 86.0174 71.587 86.9003 71.587 87.9794V144.585H69.1094V103.635C69.1094 102.556 68.2265 101.673 67.1474 101.673H48.0261C46.947 101.673 46.0641 102.556 46.0641 103.635V144.585H43.5865V122.228C43.5865 121.149 42.7035 120.266 41.6244 120.266H22.5032C21.4241 120.266 20.5411 121.149 20.5411 122.228V144.585H13V152.146H128V144.585H120.155Z" fill="#57661F" fill-opacity="0.7"/>
-          </svg>
+        <path d="M70.5 141C109.436 141 141 109.436 141 70.5001C141 31.5639 109.436 0 70.5 0C31.5639 0 0 31.5639 0 70.5001C0 109.436 31.5639 141 70.5 141Z" fill="#EAF7B7" fill-opacity="0.5"/>
+        <path d="M79.7297 60.6715C86.3914 54.0098 86.3914 43.2089 79.7297 36.5471C73.0679 29.8854 62.2671 29.8854 55.6053 36.5471C48.9435 43.2089 48.9435 54.0098 55.6053 60.6716C62.2671 67.3333 73.0679 67.3333 79.7297 60.6715Z" fill="#DC891A"/>
+        <path d="M77.6293 60.6714C84.2911 54.0097 84.2911 43.2088 77.6293 36.547C70.9676 29.8852 60.1667 29.8852 53.5049 36.547C46.8432 43.2088 46.8432 54.0097 53.5049 60.6714C60.1667 67.3332 70.9676 67.3332 77.6293 60.6714Z" fill="#FFB327"/>
+        <path d="M65.2862 52.6166C64.7564 52.6166 64.3044 52.4283 63.9301 52.0515C63.5557 51.6748 63.3686 51.2216 63.3686 50.6918C63.3686 50.1621 63.5569 49.71 63.9336 49.3357C64.3103 48.9614 64.764 48.7742 65.2945 48.7742C65.8251 48.7742 66.2771 48.9629 66.6507 49.3404C67.0242 49.7179 67.2114 50.1712 67.2122 50.7002C67.213 51.2291 67.0242 51.6812 66.6459 52.0563C66.2676 52.4314 65.8144 52.6186 65.2862 52.6178M60.9775 43.421H69.6021L71.1188 40.3411C71.287 40.0215 71.2798 39.7114 71.0974 39.4108C70.915 39.1102 70.6414 38.96 70.2766 38.96H60.303C59.9381 38.96 59.6645 39.1102 59.4821 39.4108C59.2997 39.7114 59.2926 40.0219 59.4607 40.3423L60.9775 43.421ZM61.282 57.9936H69.2975C70.8282 57.9936 72.1288 57.4579 73.1994 56.3865C74.2709 55.315 74.8066 54.012 74.8066 52.4774C74.8066 51.8366 74.6968 51.2125 74.4771 50.605C74.2574 49.9975 73.9402 49.4443 73.5254 48.9455L69.9066 44.6106H60.6729L57.0542 48.9455C56.6394 49.4443 56.3221 49.9975 56.1025 50.605C55.8828 51.2117 55.7729 51.8358 55.7729 52.4774C55.7729 54.012 56.3087 55.315 57.3801 56.3865C58.4515 57.4579 59.7522 57.9936 61.282 57.9936Z" fill="white"/>
+        <path d="M55.7722 30.2588C54.7497 28.6124 53.6539 27.0158 52.4859 25.4694C51.9247 24.7265 50.7091 25.5249 51.2751 26.2742C52.4433 27.8205 53.5388 29.4174 54.5614 31.0636C55.055 31.8587 56.2663 31.0546 55.7722 30.2588Z" fill="#DC891A"/>
+        <path d="M63.8198 28.7855C63.4193 26.7513 63.2157 24.6851 63.178 22.6129C63.1609 21.6769 61.7098 21.7623 61.7268 22.6966C61.767 24.9046 62.0165 27.0858 62.4427 29.2519C62.6225 30.1658 63.9984 29.6929 63.8198 28.7855Z" fill="#DC891A"/>
+        <path d="M71.1682 23.0973C70.1889 24.7754 69.4848 26.5874 69.0628 28.4837C68.8592 29.3983 70.2813 29.7017 70.4844 28.7886C70.8809 27.0075 71.5439 25.3331 72.4635 23.7575C72.9364 22.9472 71.638 22.2921 71.1682 23.0973Z" fill="#DC891A"/>
+        <path d="M81.4471 25.1266C79.8759 26.7224 78.5281 28.5099 77.4097 30.4497C76.9411 31.2625 78.2391 31.9178 78.705 31.1098C79.7632 29.2745 81.0465 27.6029 82.5326 26.0935C83.1903 25.4255 82.1025 24.4611 81.4471 25.1266Z" fill="#DC891A"/>
+        <path d="M111.98 41.0652L99.2335 45.1865L102.889 48.8374L76.2822 74.726L53.5986 69.4392L21.7238 106.546L24.9596 109.144L54.9908 73.3382L77.4647 79.0859L104.782 50.7271L108.067 54.0079L111.98 41.0652Z" fill="#57661F" fill-opacity="0.7"/>
+        <path d="M120.155 144.584V65.9637C120.155 64.8846 119.272 64.0016 118.193 64.0016H99.072C97.9929 64.0016 97.11 64.8846 97.11 65.9637V144.584H94.6324V87.9791C94.6324 86.9 93.7494 86.017 92.6703 86.017H73.5491C72.47 86.017 71.587 86.9 71.587 87.9791V144.584H69.1095V103.635C69.1095 102.556 68.2265 101.673 67.1474 101.673H48.0262C46.9471 101.673 46.0641 102.556 46.0641 103.635V144.584H43.5865V122.228C43.5865 121.149 42.7036 120.266 41.6245 120.266H22.5032C21.4241 120.266 20.5412 121.149 20.5412 122.228V144.584H13.0001V152.146H128V144.584H120.155Z" fill="#57661F" fill-opacity="0.7"/>
+        </svg>
         </div>
           </div>
         </div>
@@ -143,10 +143,10 @@ const HomePage = () => {
         <div className="border rounded-3xl p-8">
           <h4 className="font-semibold mb-2 text-2xl text-purple-600">Earn from direct referrals</h4>
           <div className="mb-2">
-            <label className="text-sm block mb-1 text-[#ADAFB4]">Referral link</label>
+            <label className="text-sm block mb-1 text-[#84888F]">Referral link</label>
             <div className="flex justify-between">
               <input
-                className="bg-black border px-2 py-1 rounded-lg text-[#ADAFB4] w-[85%]"
+                className="bg-transparent border px-2 py-1 rounded-lg text-[#84888F] w-[85%]"
                 value={refLink}
                 readOnly
               />
@@ -154,9 +154,9 @@ const HomePage = () => {
             </div>
           </div>
           <div>
-            <label className="text-sm block mb-1">Referral ID</label>
+            <label className="text-sm block mb-1 text-[#84888F]">Referral ID</label>
             <div className="flex justify-between">
-              <input className="bg-black border px-2 py-1 rounded-lg text-[#ADAFB4] w-[85%]" value={refCode} readOnly />
+              <input className="bg-transparent border px-2 py-1 rounded-lg text-[#84888F] w-[85%]" value={refCode} readOnly />
               <button onClick={()=>handleCopy(refCode)} className="bg-lime-400 px-3 py-1 rounded-lg">Copy</button>
             </div>
           </div>
@@ -166,23 +166,23 @@ const HomePage = () => {
           <div>
 
               <h4 className=" text-2xl font-semibold mb-2 text-purple-600">Identity verification</h4>
-              <p className="text-md text-[#D6D7DA] mb-2">Verification is simple and fast</p>
+              <p className="text-md text-[#323844] mb-2">Verification is simple and fast</p>
               <div className='flex flex-col justify-between'>
                 <div className='flex flex-col gap-4'>
                   <div className='flex'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='mr-2'>
                     <path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM17.2969 9.79688L11.2969 15.7969C10.8562 16.2375 10.1438 16.2375 9.70781 15.7969L6.70781 12.7969C6.26719 12.3562 6.26719 11.6438 6.70781 11.2078C7.14844 10.7719 7.86094 10.7672 8.29688 11.2078L10.5 13.4109L15.7031 8.20312C16.1437 7.7625 16.8562 7.7625 17.2922 8.20312C17.7281 8.64375 17.7328 9.35625 17.2922 9.79219L17.2969 9.79688Z" fill="#7D922D"/>
                     </svg>
-                    <p className='text-[#D6D7DA]'>Create Up to 10 Sell Orders</p>
+                    <p className='text-[#323844]'>Create Up to 10 Sell Orders</p>
                   </div>
                   <div className='flex'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className='mr-2'>
                     <path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76516 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76516 1.26428 3.51472 3.51472C1.26428 5.76516 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76516 22.7357 8.8174 24 12 24ZM17.2969 9.79688L11.2969 15.7969C10.8562 16.2375 10.1438 16.2375 9.70781 15.7969L6.70781 12.7969C6.26719 12.3562 6.26719 11.6438 6.70781 11.2078C7.14844 10.7719 7.86094 10.7672 8.29688 11.2078L10.5 13.4109L15.7031 8.20312C16.1437 7.7625 16.8562 7.7625 17.2922 8.20312C17.7281 8.64375 17.7328 9.35625 17.2922 9.79219L17.2969 9.79688Z" fill="#7D922D"/>
                     </svg>
-                    <p className='text-[#D6D7DA]'>Earn from referrals</p>
+                    <p className='text-[#323844]'>Earn from referrals</p>
                   </div>
                 </div>
-                  <button onClick={()=>navigate('/investment')} className="bg-[#57661F] text-white px-4 py-2 rounded-xl mt-4 w-fit">Invest Now</button>
+                  <button onClick={()=>navigate('/settings')} className="bg-[#CAEB4B] text-white px-4 py-2 rounded-xl mt-4 w-fit">Verify Now</button>
                 </div>
             </div>
           <svg width="130" height="230" viewBox="0 0 188 276" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,18 +196,18 @@ const HomePage = () => {
       </div>
 
 
-      <div className="mb-6 border border-[#5B6069] p-8 rounded-xl">
+      <div className="bg-gradient-to-br from-[#EEDDFF] via-[#FCFAFF] to-[#FCFAFF]`} rounded-2xl mb-6 border border-[#D6D7DA] p-8 rounded-xl">
         <div className="flex gap-20 items-center mb-2">
-          <h4 className="text-lg text-white font-semibold">Pending Orders</h4>
-          <a href="#" className="text-sm text-purple-600 underline">View all</a>
+          <h4 className="text-lg text-[#1E2229] font-semibold">Pending Orders</h4>
+          <a href="#" className="text-sm text-[#8C55C1] underline">View all</a>
         </div>
         <div className="flex space-x-2 mb-4">
         {['sell', 'buy'].map(type => (
           <button
             key={type}
             onClick={() =>{handleTabSelect(type)}}
-            className={`px-4 py-1 rounded-2xl capitalize ${
-              selectedTab === type ? 'bg-[#57661F] text-white' : 'bg-[#57661F33] text-[#ADAFB4]'
+            className={`px-4 py-2 rounded-2xl capitalize ${
+              selectedTab === type ? 'bg-[#57661F] text-white' : 'bg-[#EBEBECCC] text-[#5B6069]'
             }`}
           >
             {type} orders
@@ -219,36 +219,36 @@ const HomePage = () => {
         {pendingOrders.map(order => (
           <div
             key={order._id}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center border border-[#5B6069] p-4 rounded-xl"
+            className="flex flex-col md:flex-row justify-between items-start md:items-center border border-[#D6D7DA] p-4 rounded-xl"
           >
             <div>
-              <p className="font-medium flex items-center gap-2 text-[#ADAFB4]">Order #{order._id} </p> 
-              <p className="font-medium flex items-center gap-2 text-[#ADAFB4]">{order.user.fullName} | {order.user.phoneNumber}
+              <p className="font-medium flex items-center gap-2 text-[#5B6069]">Order #{order._id} </p> 
+              <p className="font-medium flex items-center gap-2 text-[#1E2229]">{order.user.fullName} | <span className='text-[#5B6069] font-normal'>{order.user.phoneNumber}</span>
                 <Copy
-                  className="w-4 h-4 cursor-pointer text-gray-500 hover:text-black"
+                  className="w-4 h-4 cursor-pointer text-purple-500"
                   onClick={() => handleCopy(order.user.phoneNumber)}
                 />
               </p>
-              {order.paymentMethod === 'bank' ?<> <p className="text-sm text-[#EBEBEC]">Bank transfer {selectedTab === 'sell' && <span>• {order.bankName}</span>}</p>
-              {selectedTab === 'sell' && <p className="text-sm text-gray-500 flex items-center gap-2">
-                Account no: {order.accountNumber}
+              {order.paymentMethod === 'bank' ?<> <p className="text-sm text-[#1E2229]">Bank transfer {selectedTab === 'sell' && <span className='text-[#1E2229]'>• {order.bankName}</span>}</p>
+              {selectedTab === 'sell' && <p className="text-sm text-[#5B6069] flex items-center gap-2">
+                Account no: <span className='text-[#1E2229]'>{order.accountNumber}</span>
                 <Copy
-                  className="w-4 h-4 cursor-pointer text-gray-500 hover:text-black"
+                  className="w-4 h-4 cursor-pointer text-purple-500"
                   onClick={() => handleCopy(order.accountNumber)}
                 />
-              </p>}</> : <> <p className="text-sm text-gray-500">USDT {selectedTab === 'sell' && <span>• {order.cryptoNetwork}</span>}</p>
-			  {selectedTab === 'sell' && <p className="text-sm text-gray-500 flex items-center gap-2">
-                Wallet Address: {order.cryptoAddress}
+              </p>}</> : <> <p className="text-sm text-[#1E2229]">USDT {selectedTab === 'sell' && <span className='text-[#1E2229]'>• {order.cryptoNetwork}</span>}</p>
+			  {selectedTab === 'sell' && <p className="text-sm text-[#5B6069] flex items-center gap-2">
+                Wallet Address: <span className='text-[#1E2229]'>{order.cryptoAddress}</span>
                 <Copy
-                  className="w-4 h-4 cursor-pointer text-gray-500 hover:text-black"
+                  className="w-4 h-4 cursor-pointer text-purple-500"
                   onClick={() => handleCopy(order.cryptoAddress)}
                 />
               </p>}</>}
             </div>
-              <p className="font-semibold text-[#D6D7DA] md:mb-16">{order.amount.toLocaleString()}</p>
+              <p className="font-semibold text-[#323844] md:mb-16">{order.amount.toLocaleString()}</p>
             <div className="mt-2 md:mt-0 flex items-center gap-4">
               {order.status === 'pending' && (
-                <button onClick={()=>{cancelOrder(order._id)}} className="bg-[#FF596D4D] text-white px-3 py-1 text-sm rounded">Cancel</button>
+                <button onClick={()=>{cancelOrder(order._id)}} className="bg-[#FF596D4D] text-[#FF4C61] px-12 py-3 text-sm rounded-md">Cancel</button>
               )}
             </div>
           </div>
@@ -256,19 +256,19 @@ const HomePage = () => {
       </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4 mb-10">
+      <div className="bg-gradient-to-tl from-[#EEDDFF] via-[#FCFAFF] to-[#FCFAFF]`} rounded-2xl grid md:grid-cols-2 gap-4 mb-10">
           <div>
-            <div className='border border-[#5B6069] rounded-2xl p-8'>
-              <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">Recent notifications</h4>
+            <div className='border border-[#D6D7DA] rounded-2xl p-8'>
+              <h4 className="font-semibold mb-2 text-2xl text-[#1E2229]">Recent notifications</h4>
               <div className="space-y-2 text-sm">
                 {notifications.length === 0 ? (
-                  <p className="text-[#ADAFB4]">No notifications yet.</p>
+                  <p className="text-[#5B6069]">No notifications yet.</p>
                 ) : (
                   notifications.map((not, i) => (
                     <div key={i} className="border-b border-[#5B6069]">
-                      <p className='text-lg text-[#D6D7DA] mb-2'>{not.title}</p>
-                      <p className='text-[#D6D7DA] mb-2 w-full'>{not.content}</p>
-                      <p className="text-xs text-[#ADAFB4]">
+                      <p className='text-lg text-[#323844] mb-2'>{not.title}</p>
+                      <p className='text-[#323844] mb-2 w-full'>{not.content}</p>
+                      <p className="text-xs text-[#5B6069]">
                         {new Date(not.createdAt).toLocaleDateString('en-GB', {
                           year: 'numeric',
                           month: 'long',
@@ -281,11 +281,11 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        <div className='border border-[#5B6069] rounded-2xl p-8'>
-          <h4 className="font-semibold mb-2 text-2xl text-[#EBEBEC]">New announcements</h4>
+        <div className='border border-[#D6D7DA] rounded-2xl p-8'>
+          <h4 className="font-semibold mb-2 text-2xl text-[#1E2229]">New announcements</h4>
           <div className="space-y-2 text-sm">
             {[].length === 0 ? (
-                  <p className="text-[#ADAFB4]">No announcements yet.</p>
+                  <p className="text-[#5B6069]">No announcements yet.</p>
                 ) : ( [].map(i => (
               <div key={i} className="border-b border-[#5B6069] p-3 ">
                 <p className='text-white'>Earn More with Our New Referral Boost!</p>
