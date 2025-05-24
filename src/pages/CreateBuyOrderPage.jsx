@@ -25,7 +25,7 @@ export default function CreateSellOrderForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="min-h-screen flex items-center justify-center">
       <form className="w-full max-w-md p-6 bg-black rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4 text-[#D6D7DA] text-left">Create buy order</h2>
 

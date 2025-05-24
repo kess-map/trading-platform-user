@@ -24,7 +24,7 @@ const NavbarMain = ({onMenuClick}) => {
 
       <div className="flex items-center space-x-4">
         <Link to={'/notifications'}><Bell className="w-5 h-5 text-black fill-white cursor-pointer" /></Link>
-        <Moon className="w-5 h-5 text-black fill-white cursor-pointer" />
+        {/* <Moon className="w-5 h-5 text-black fill-white cursor-pointer" /> */}
         <span onClick={logout} className='hidden sm:block cursor-pointer'>Logout</span>
         <LogOut onClick={logout} className='sm:hidden cursor-pointer'/>
       </div>

@@ -111,9 +111,9 @@ export default function InvestmentsPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 min-h-screen w-full max-w-full overflow-x-hidden bg-black">
+    <div className="p-4 md:p-8 min-h-screen w-full max-w-full overflow-x-hidden">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <h1 className="text-2xl font-bold text-[#D6D7DA]">Investment</h1>
+        <h1 className="text-3xl font-bold text-[#323844]">Investment</h1>
         <div className="flex flex-wrap gap-2 sm:gap-3">
           <button onClick={()=>{navigate('/create-investment')}} className="text-sm sm:text-base bg-[#CAEB4B] text-black font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-lime-600 transition">
             New Investment
@@ -123,13 +123,13 @@ export default function InvestmentsPage() {
 
       <div className="flex flex-col md:flex-row w-full h-full gap-6 mt-6">
         <div className="grid grid-cols-1 gap-4 md:w-1/2 w-full">
-          <div className="rounded-lg p-4 shadow-sm border border-[#5B6069]">
-            <h3 className="text-[#ADAFB4]">Total Investment</h3>
-            <p className="text-2xl font-bold text-[#D6D7DA] mt-2">{(summary.totalInvested).toLocaleString()}CHT</p>
+          <div className="flex flex-col justify-between rounded-lg p-4 shadow-sm border border-[#D6D7DA]">
+            <h3 className="text-[#5B6069]">Total Investment</h3>
+            <p className="text-xl md:text-3xl text-[#323844] font-semibold">{(summary.totalInvested).toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
-          <div className="border border-[#5B6069] rounded-lg p-4 shadow-sm">
-            <h3 className="text-[#ADAFB4]">Total Expected Return</h3>
-            <p className="text-2xl font-bold text-[#D6D7DA] mt-2">{(summary.totalExpectedReturn).toLocaleString()}CHT</p>
+          <div className="flex flex-col justify-between border border-[#D6D7DA] rounded-lg p-4 shadow-sm">
+            <h3 className="text-[#5B6069]">Total Expected Return</h3>
+            <p className="text-xl md:text-3xl  text-[#323844] font-semibold">{(summary.totalExpectedReturn).toLocaleString()}<span className="text-sm md:text-xl mb-4 text-[#323844] font-semibold">CHT</span></p>
           </div>
         </div>
         <div className="md:w-1/2 w-full">
@@ -149,42 +149,42 @@ export default function InvestmentsPage() {
       <div className="flex gap-4 mb-4 mt-4">
     <button
       onClick={() => setActiveTab('pending')}
-      className={`px-4 py-2 rounded-3xl ${activeTab === 'pending' ? 'bg-[#57661F] text-white' : 'bg-[#57661F33] text-[#ADAFB4]'}`}
+      className={`px-4 py-2 rounded-2xl capitalize ${activeTab === 'pending' ? 'bg-[#57661F] text-white' : 'bg-[#EBEBECCC] text-[#5B6069]'}`}
     >
       Pending
     </button>
     <button
       onClick={() => setActiveTab('completed')}
-      className={`px-4 py-2 rounded-3xl ${activeTab === 'completed' ? 'bg-[#57661F] text-white' : 'bg-[#57661F33] text-[#ADAFB4]'}`}
+      className={`px-4 py-2 rounded-2xl capitalize ${activeTab === 'completed' ? 'bg-[#57661F] text-white' : 'bg-[#EBEBECCC] text-[#5B6069]'}`}
     >
       Completed
     </button>
   </div>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div className="bg-gradient-to-tl from-[#EEDDFF] via-[#FCFAFF] to-[#FCFAFF] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {displayedInvestments.map((item, index) => (
-    <div key={index} className="border border-[#5B6069] rounded-xl p-4 bg-black shadow-md">
+    <div key={index} className="border border-[#D6D7DA] rounded-xl p-4 shadow-md">
       <div className="flex justify-between items-center mb-3">
-        <h2 className="text-2xl font-semibold text-white">{item.planDurationDays} Days</h2>
+        <h2 className="text-2xl font-semibold text-[#1E2229]">{item.planDurationDays} Days</h2>
         <span className="text-2xl text-[#8C55C1] font-bold">{item.roiPercentage}% ROI</span>
       </div>
-      <div className="text-sm text-gray-300 space-y-1 mb-3 flex justify-between items-center">
+      <div className="text-sm space-y-1 mb-3 flex justify-between items-center">
         <div className='flex flex-col'>
-          <span className="text-gray-400">Staked amount</span>
-          <span className='text-xl'>{(item.amount).toLocaleString()}</span>
+          <span className="text-[#5B6069]">Staked amount</span>
+          <span className='text-xl text-[#1E2229] font-semibold'>{(item.amount).toLocaleString()}</span>
         </div>
         <div className='flex flex-col'>
-          <span className="text-gray-400">Expected Return</span>
-          <span className='text-xl text-right'>{(item.amount + (item.amount * (item.roiPercentage/100))).toLocaleString()}</span>
+          <span className="text-[#5B6069]">Expected Return</span>
+          <span className='text-xl text-[#1E2229] font-semibold text-right'>{(item.amount + (item.amount * (item.roiPercentage/100))).toLocaleString()}</span>
         </div>
       </div>
       <div className="text-sm text-gray-400 mb-3 flex justify-between">
         <div>
-          <p>Start date:</p>
-          <p>{formatDateTime(item.investmentCreatedAt)}</p>
+          <p className='text-[#5B6069]'>Start date:</p>
+          <p className='text-[#323844] font-medium'>{formatDateTime(item.investmentCreatedAt)}</p>
         </div>
         <div>
-          <p className='text-right'>End date:</p>
-          <p>{formatDateTime(item.investmentEndsAt)}</p>
+          <p className='text-[#5B6069] text-right'>End date:</p>
+          <p className='text-[#323844] font-medium'>{formatDateTime(item.investmentEndsAt)}</p>
         </div>
       </div>
       <div className="mb-2">
@@ -192,9 +192,9 @@ export default function InvestmentsPage() {
           <div className="bg-[#445017] h-2.5 rounded-full" style={{ width: getProgressWidth(item.investmentCreatedAt, item.investmentEndsAt) }}></div>
         </div>
         <div className='flex justify-center mt-2'>
-          <p className='text-[#D6D7DA] mr-3'>{getProgressWidth(item.investmentCreatedAt, item.investmentEndsAt)}</p>
+          <p className='text-[#323844] mr-3'>{getProgressWidth(item.investmentCreatedAt, item.investmentEndsAt)}</p>
           <p className='text-[#A972E0] text-xl mr-3'>•</p>
-          <p className='text-[#D6D7DA]'>{getRemainingDays(item.investmentEndsAt)}</p>
+          <p className='text-[#323844]'>{getRemainingDays(item.investmentEndsAt)}</p>
         </div>
         {activeTab === 'completed' && (
           <>
@@ -203,14 +203,14 @@ export default function InvestmentsPage() {
               onClick={() =>
                 setExpandedCardIndex(expandedCardIndex === index ? null : index)
               }
-              className="text-sm sm:text-base w-full bg-black border border-[#57661F] text-[#57661F] font-semibold px-4 py-2 rounded-md transition"
+              className="text-sm sm:text-base w-full border border-[#57661F] text-[#57661F] font-semibold px-4 py-2 rounded-lg transition"
             >
               {expandedCardIndex === index ? 'Hide' : 'View'}
             </button>
       
             <button
               onClick={() => handleReinvest(item)} // implement this function
-              className="text-sm sm:text-base w-full bg-[#CAEB4B] text-[#1D2308] font-semibold px-4 py-2 rounded-md  transition"
+              className="text-sm sm:text-base w-full bg-[#CAEB4B] text-[#1D2308] font-semibold px-4 py-2 rounded-lg  transition"
             >
               Re-invest
             </button>
@@ -218,15 +218,15 @@ export default function InvestmentsPage() {
       
           {expandedCardIndex === index && (
             <>
-              <div className="mt-4 p-4 border border-[#5B6069] rounded-lg bg-[#111] text-white text-center">
-                <p className="text-lg font-semibold mb-2">Time Left Till Capital Release</p>
+              <div className="mt-4 p-4 border border-[#57661F] rounded-lg text-white text-center">
+                <p className="text-lg font-semibold mb-2 text-[#323844]">Time Left Till Capital Release</p>
                 <div className="mb-2">
                   <div className="w-full bg-[#EFF9C9] rounded-full h-2.5">
                     <div className="bg-[#445017] h-2.5 rounded-full" style={{ width: `${item.percentage}%` }}></div>
                   </div>
                   <div className="flex justify-between mt-1">
-                    <p className='text-[#D6D7DA]'>{item.percentage.toFixed(0)}%</p>
-                    <p className='text-[#D6D7DA]'>{getRemainingDays(item.countdown)} days left</p>
+                    <p className='text-[#323844]'>{item.percentage.toFixed(0)}%</p>
+                    <p className='text-[#323844]'>{getRemainingDays(item.countdown)} days left</p>
                   </div>
                 </div>
               </div>

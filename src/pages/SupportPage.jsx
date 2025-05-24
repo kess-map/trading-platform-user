@@ -13,7 +13,7 @@ const SupportPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white px-4">
       <div className="flex flex-col items-center space-y-6">
         {/* WhatsApp Logo */}
         <svg
@@ -32,8 +32,8 @@ const SupportPage = () => {
 
         {/* Message */}
         <div className="text-center space-y-2">
-          <h2 className="text-2xl font-semibold text-[#D6D7DA]">Need Help?</h2>
-          <p className="text-[#ADAFB4]">Contact us directly via WhatsApp:</p>
+          <h2 className="text-2xl font-semibold text-[#323844]">Need Help?</h2>
+          <p className="text-[#84888F]">Contact us directly via WhatsApp:</p>
           <p className="text-xl font-bold text-green-400">{whatsappNumber}</p>
         </div>
 

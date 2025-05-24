@@ -21,15 +21,15 @@ export default function CreateSellOrderForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <form className="w-full max-w-md p-6 bg-black rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-[#D6D7DA] text-left">Stake token and earn</h2>
+    <div className="min-h-screen flex items-center justify-center">
+      <form className="w-full max-w-md p-6 rounded-lg">
+        <h2 className="text-2xl font-bold mb-4 text-[#323844] text-left">Stake token and earn</h2>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1 text-[#ADAFB4]">Amount</label>
+          <label className="block text-sm mb-1 text-[#5B6069]">Amount</label>
           <select 
           name="amount" 
-          className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" 
+          className="w-full p-2 rounded-lg text-black bg-[#FCFAFF] border border-[#00000080] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080]" 
           value={amount} 
           onChange={(e) => {
             setAmount(e.target.value);
@@ -49,9 +49,9 @@ export default function CreateSellOrderForm() {
         </div>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1  text-[#ADAFB4]">Duration</label>
+          <label className="block text-sm mb-1  text-[#5B6069]">Duration</label>
             <select
-                className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]"
+                className="w-full p-2 rounded-lg text-black bg-[#FCFAFF] border border-[#00000080] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080]"
                 value={JSON.stringify(duration)}
                 onChange={(e) => setDuration(JSON.parse(e.target.value))}
                 >

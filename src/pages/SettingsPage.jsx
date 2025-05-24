@@ -15,16 +15,16 @@ const SettingsPage = () => {
   if(!user) return <LoadingSpinner/>
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <h1 className="text-3xl font-bold mb-6 text-[#D6D7DA]">Settings</h1>
+    <div className="min-h-screen text-white p-6">
+      <h1 className="text-3xl font-bold mb-6 text-[#323844]">Settings</h1>
 
-      <div className="flex space-x-6 border-b border-gray-700 pb-2 mb-6">
+      <div className="flex space-x-6 border-b  pb-2 mb-6">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`text-sm font-medium ${
-              activeTab === tab ? 'border-b-2 border-[#EBEBEC] text-[#EBEBEC]' : 'text-[#D6D7DA]'
+              activeTab === tab ? 'border-b-2 border-[#323844] text-[#323844]' : 'text-[#323844]'
             }`}
           >
             {tab}
@@ -32,7 +32,7 @@ const SettingsPage = () => {
         ))}
       </div>
 
-      <div className="bg-black rounded-lg w-full">
+      <div className="rounded-lg w-full">
         {activeTab === 'Verification' && <VerificationTab />}
         {activeTab === 'Profile' && <ProfileTab />}
         {activeTab === 'Security' && <SecurityTab />}
@@ -71,7 +71,7 @@ const VerificationTab = () => {
 
     const countryVerificationMap = {
         Ghana: ['Voter ID', 'Ghana Card', 'Driver’s License'],
-        Nigeria: ['NIN Slip', 'Voter’s Card', 'International Passport'],
+        Nigeria: ['NIN Slip'],
         Kenya: ['National ID', 'Passport'],
     };
 
@@ -118,9 +118,9 @@ const VerificationTab = () => {
       };
     
   return (
-    <div className="flex flex-col items-center text-center space-y-4 bg-black max-w-md mx-auto">
-      <h2 className="text-lg font-semibold">{user.fullName}</h2>
-      {pendingVerification === true ? <span className={`text-sm px-3 py-1 rounded-full bg-[#FF4C6133] text-[#FF4C61]`}>
+    <div className="flex flex-col items-center text-center space-y-4 max-w-md mx-auto">
+      <h2 className="text-lg font-semibold text-[#333333]">{user.fullName}</h2>
+      {pendingVerification === true ? <span className={`text-sm px-3 py-1 rounded-full text-[#FF4C61]`}>
         Pending Review
         </span> : <span className={`text-sm px-3 py-1 rounded-full ${user.isDocumentVerified ? 'bg-green-500 text-white' : 'bg-[#FF4C6133] text-[#FF4C61]'}`}>
         {user.isDocumentVerified ? ' Verified' : 'Unverified'}
@@ -137,7 +137,7 @@ const VerificationTab = () => {
         <p className='text-[#D6D7DA]'>Your ID has been submitted for review.</p>
         <p className='text-[#D6D7DA]'>Verification takes 24-48hrs.</p>
       </div> : 
-      <><div className="bg-[#57661F4D] text-green-500 p-4 rounded-lg w-full">
+      <><div className="bg-[#F4FBDB] text-green-500 p-4 rounded-lg w-full">
         <div className="flex items-center space-x-2 mb-1">
           <CheckCircle className="w-4 h-4" />
           <span className='text-[#57661F] text-sm md:text-base'>Verified users can create up to 10 sell orders</span>
@@ -149,13 +149,13 @@ const VerificationTab = () => {
       </div>
 
       <div className="w-full text-left">
-        <label className="block text-sm mb-1">Select country to get verified</label>
+        <label className="block text-sm mb-1 text-[#5B6069]">Select country to get verified</label>
         <select 
         value={selectedCountry}
         onChange={(e) => {
           setSelectedCountry(e.target.value);
           setShowVerificationTypes(false)}}
-        className="w-full bg-black border border-gray-700 rounded px-3 py-2">
+        className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded px-3 py-2">
           <option value=''>Select Country</option>
           {Object.keys(countryVerificationMap).map((country) => (
             <option key={country} value={country}>{country}</option>
@@ -168,12 +168,12 @@ const VerificationTab = () => {
       </button>}
       </>}
       {showVerificationTypes && (
-        <div className="w-full mt-6 bg-black rounded-lg text-left">
-          <p className="text-sm mb-2">Select a verification type:</p>
+        <div className="w-full mt-6 rounded-lg text-left">
+          <p className="text-sm mb-2 text-[#5B6069]">Select a verification type:</p>
           <select 
             value={verificationType}
             onChange={(e) => setVerificationType(e.target.value)}
-            className="space-y-2 bg-black w-full border border-gray-700 rounded px-3 py-2">
+            className="space-y-2 w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded px-3 py-2">
                 <option value="">Select</option>
             {verificationOptions.map((option) => (
               <option value={option}>{option}</option>
@@ -188,28 +188,28 @@ const VerificationTab = () => {
       </>
 }
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-black p-6 rounded-lg max-w-md w-full">
-            <h2 className="text-2xl font-semibold  text-left text-[#D6D7DA] mb-4">
+        <div className="fixed inset-0 bg-[#FCFAFF] bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-[#FCFAFF] p-6 rounded-lg max-w-md w-full">
+            <h2 className="text-2xl font-semibold  text-left mb-4 text-[#333333]">
               Verify using {verificationType}
             </h2>
 
             <div className="space-y-4 w-full h-full">
               <div className="rounded flex flex-col justify-start">
-                <p className="text-sm text-left mb-2">Front View</p>
+                <p className="text-sm text-left mb-2 text-[#333333]">Front View</p>
                 {frontPreview ? (<>
                     <img src={frontPreview} alt="Front" className="h-full object-cover rounded-md" />
                     <button onClick={()=>{ setFrontImage(null)
                         setFrontPreview('')}} className='bg-red-500 mx-auto px-4 rounded-md mt-2'>Remove</button>
                 </>
-                  ): (<label htmlFor="front" className='flex flex-col justify-center items-center border border-[#5B6069] bg-[#57661F80] px-24 py-6 rounded-lg'>
+                  ): (<label htmlFor="front" className='flex flex-col justify-center items-center border border-[#5B6069] bg-[#D6D7DA] px-24 py-6 rounded-lg'>
                 <svg width="65" height="58" viewBox="0 0 65 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M36.2093 0.757812H14.0405C10.5819 0.757812 7.26503 2.13171 4.81946 4.57728C2.3739 7.02284 1 10.3397 1 13.7983V32.0549C1 33.7674 1.3373 35.4632 1.99265 37.0453C2.64799 38.6274 3.60854 40.065 4.81946 41.2759C7.26503 43.7215 10.5819 45.0954 14.0405 45.0954H36.2093C37.9218 45.0954 39.6175 44.7581 41.1996 44.1028C42.7818 43.4474 44.2193 42.4869 45.4303 41.2759C46.6412 40.065 47.6017 38.6274 48.2571 37.0453C48.9124 35.4632 49.2497 33.7674 49.2497 32.0549V13.7983C49.2497 12.0858 48.9124 10.3901 48.2571 8.80791C47.6017 7.22577 46.6412 5.7882 45.4303 4.57728C44.2193 3.36636 42.7818 2.4058 41.1996 1.75046C39.6175 1.09511 37.9218 0.757812 36.2093 0.757812Z" stroke="#8C55C1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M1.65234 35.9673L8.8246 27.6214C9.7631 26.6893 10.9948 26.11 12.3113 25.9817C13.6278 25.8534 14.9482 26.1839 16.049 26.9172C17.1499 27.6505 18.4702 27.981 19.7867 27.8527C21.1032 27.7243 22.3349 27.1451 23.2734 26.213L29.3503 20.1361C31.0964 18.3841 33.4082 17.3095 35.8732 17.1041C38.3382 16.8987 40.7961 17.5758 42.8081 19.0147L49.3022 24.0483M14.6928 18.154C15.2614 18.154 15.8243 18.042 16.3496 17.8244C16.8749 17.6069 17.3522 17.2879 17.7542 16.8859C18.1562 16.4839 18.4751 16.0066 18.6927 15.4814C18.9103 14.9561 19.0222 14.3931 19.0222 13.8246C19.0222 13.256 18.9103 12.693 18.6927 12.1677C18.4751 11.6425 18.1562 11.1652 17.7542 10.7632C17.3522 10.3612 16.8749 10.0423 16.3496 9.82468C15.8243 9.6071 15.2614 9.49512 14.6928 9.49512C13.5446 9.49512 12.4434 9.95125 11.6314 10.7632C10.8195 11.5751 10.3634 12.6763 10.3634 13.8246C10.3634 14.9728 10.8195 16.074 11.6314 16.8859C12.4434 17.6979 13.5446 18.154 14.6928 18.154Z" stroke="#8C55C1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M50.5091 28.7568C46.6804 28.8033 43.0216 30.3449 40.3141 33.0524C37.6066 35.7599 36.065 39.4187 36.0186 43.2474C36.065 47.0761 37.6066 50.7349 40.3141 53.4424C43.0216 56.1499 46.6804 57.6915 50.5091 57.738C54.3378 57.6915 57.9966 56.1499 60.7041 53.4424C63.4116 50.7349 64.9532 47.0761 64.9997 43.2474C64.9532 39.4187 63.4116 35.7599 60.7041 33.0524C57.9966 30.3449 54.3378 28.8033 50.5091 28.7568ZM58.7894 43.7824C58.7894 44.0586 58.5656 44.2824 58.2894 44.2824H52.0442C51.768 44.2824 51.5442 44.5063 51.5442 44.7824V51.0277C51.5442 51.3039 51.3203 51.5277 51.0442 51.5277H49.9741C49.6979 51.5277 49.4741 51.3039 49.4741 51.0277V44.7824C49.4741 44.5063 49.2502 44.2824 48.9741 44.2824H42.7288C42.4527 44.2824 42.2288 44.0586 42.2288 43.7824V42.7124C42.2288 42.4362 42.4527 42.2124 42.7288 42.2124H48.9741C49.2502 42.2124 49.4741 41.9885 49.4741 41.7124V35.4671C49.4741 35.1909 49.6979 34.9671 49.9741 34.9671H51.0442C51.3203 34.9671 51.5442 35.1909 51.5442 35.4671V41.7124C51.5442 41.9885 51.768 42.2124 52.0442 42.2124H58.2894C58.5656 42.2124 58.7894 42.4362 58.7894 42.7124V43.7824Z" fill="#8C55C1"/>
                     <path d="M58.7894 43.7824C58.7894 44.0586 58.5656 44.2824 58.2894 44.2824H52.0442C51.768 44.2824 51.5442 44.5063 51.5442 44.7824V51.0277C51.5442 51.3039 51.3203 51.5277 51.0442 51.5277H49.9741C49.6979 51.5277 49.4741 51.3039 49.4741 51.0277V44.7824C49.4741 44.5063 49.2502 44.2824 48.9741 44.2824H42.7288C42.4527 44.2824 42.2288 44.0586 42.2288 43.7824V42.7124C42.2288 42.4362 42.4527 42.2124 42.7288 42.2124H48.9741C49.2502 42.2124 49.4741 41.9885 49.4741 41.7124V35.4671C49.4741 35.1909 49.6979 34.9671 49.9741 34.9671H51.0442C51.3203 34.9671 51.5442 35.1909 51.5442 35.4671V41.7124C51.5442 41.9885 51.768 42.2124 52.0442 42.2124H58.2894C58.5656 42.2124 58.7894 42.4362 58.7894 42.7124V43.7824Z" fill="white"/>
                 </svg>
-                <p className='text-sm text-[#ADAFB4]'>Ensure good lighting, no glare and all details are legible </p>
+                <p className='text-sm text-[#5B6069]'>Ensure good lighting, no glare and all details are legible </p>
                 <input
                   type="file"
                   id='front'
@@ -221,20 +221,20 @@ const VerificationTab = () => {
               </div>
 
               <div className="rounded flex flex-col justify-start">
-                <p className="text-sm text-left mb-2">Back View</p>
+                <p className="text-sm text-left mb-2 text-[#333333]">Back View</p>
                 {backPreview ? (<>
                         <img src={backPreview} alt="back" className="h-full object-cover rounded-md" />
                         <button onClick={()=>{ setBackImage(null)
                         setBackPreview('')}} className='bg-red-500 mx-auto px-4 rounded-md mt-2'>Remove</button>
                 </>
-                  ): (<label htmlFor="back" className='flex flex-col justify-center items-center border border-[#5B6069] bg-[#57661F80] px-24 py-6 rounded-lg'>
+                  ): (<label htmlFor="back" className='flex flex-col justify-center items-center border border-[#5B6069] bg-[#D6D7DA] px-24 py-6 rounded-lg'>
                 <svg width="65" height="58" viewBox="0 0 65 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M36.2093 0.757812H14.0405C10.5819 0.757812 7.26503 2.13171 4.81946 4.57728C2.3739 7.02284 1 10.3397 1 13.7983V32.0549C1 33.7674 1.3373 35.4632 1.99265 37.0453C2.64799 38.6274 3.60854 40.065 4.81946 41.2759C7.26503 43.7215 10.5819 45.0954 14.0405 45.0954H36.2093C37.9218 45.0954 39.6175 44.7581 41.1996 44.1028C42.7818 43.4474 44.2193 42.4869 45.4303 41.2759C46.6412 40.065 47.6017 38.6274 48.2571 37.0453C48.9124 35.4632 49.2497 33.7674 49.2497 32.0549V13.7983C49.2497 12.0858 48.9124 10.3901 48.2571 8.80791C47.6017 7.22577 46.6412 5.7882 45.4303 4.57728C44.2193 3.36636 42.7818 2.4058 41.1996 1.75046C39.6175 1.09511 37.9218 0.757812 36.2093 0.757812Z" stroke="#8C55C1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M1.65234 35.9673L8.8246 27.6214C9.7631 26.6893 10.9948 26.11 12.3113 25.9817C13.6278 25.8534 14.9482 26.1839 16.049 26.9172C17.1499 27.6505 18.4702 27.981 19.7867 27.8527C21.1032 27.7243 22.3349 27.1451 23.2734 26.213L29.3503 20.1361C31.0964 18.3841 33.4082 17.3095 35.8732 17.1041C38.3382 16.8987 40.7961 17.5758 42.8081 19.0147L49.3022 24.0483M14.6928 18.154C15.2614 18.154 15.8243 18.042 16.3496 17.8244C16.8749 17.6069 17.3522 17.2879 17.7542 16.8859C18.1562 16.4839 18.4751 16.0066 18.6927 15.4814C18.9103 14.9561 19.0222 14.3931 19.0222 13.8246C19.0222 13.256 18.9103 12.693 18.6927 12.1677C18.4751 11.6425 18.1562 11.1652 17.7542 10.7632C17.3522 10.3612 16.8749 10.0423 16.3496 9.82468C15.8243 9.6071 15.2614 9.49512 14.6928 9.49512C13.5446 9.49512 12.4434 9.95125 11.6314 10.7632C10.8195 11.5751 10.3634 12.6763 10.3634 13.8246C10.3634 14.9728 10.8195 16.074 11.6314 16.8859C12.4434 17.6979 13.5446 18.154 14.6928 18.154Z" stroke="#8C55C1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M50.5091 28.7568C46.6804 28.8033 43.0216 30.3449 40.3141 33.0524C37.6066 35.7599 36.065 39.4187 36.0186 43.2474C36.065 47.0761 37.6066 50.7349 40.3141 53.4424C43.0216 56.1499 46.6804 57.6915 50.5091 57.738C54.3378 57.6915 57.9966 56.1499 60.7041 53.4424C63.4116 50.7349 64.9532 47.0761 64.9997 43.2474C64.9532 39.4187 63.4116 35.7599 60.7041 33.0524C57.9966 30.3449 54.3378 28.8033 50.5091 28.7568ZM58.7894 43.7824C58.7894 44.0586 58.5656 44.2824 58.2894 44.2824H52.0442C51.768 44.2824 51.5442 44.5063 51.5442 44.7824V51.0277C51.5442 51.3039 51.3203 51.5277 51.0442 51.5277H49.9741C49.6979 51.5277 49.4741 51.3039 49.4741 51.0277V44.7824C49.4741 44.5063 49.2502 44.2824 48.9741 44.2824H42.7288C42.4527 44.2824 42.2288 44.0586 42.2288 43.7824V42.7124C42.2288 42.4362 42.4527 42.2124 42.7288 42.2124H48.9741C49.2502 42.2124 49.4741 41.9885 49.4741 41.7124V35.4671C49.4741 35.1909 49.6979 34.9671 49.9741 34.9671H51.0442C51.3203 34.9671 51.5442 35.1909 51.5442 35.4671V41.7124C51.5442 41.9885 51.768 42.2124 52.0442 42.2124H58.2894C58.5656 42.2124 58.7894 42.4362 58.7894 42.7124V43.7824Z" fill="#8C55C1"/>
                     <path d="M58.7894 43.7824C58.7894 44.0586 58.5656 44.2824 58.2894 44.2824H52.0442C51.768 44.2824 51.5442 44.5063 51.5442 44.7824V51.0277C51.5442 51.3039 51.3203 51.5277 51.0442 51.5277H49.9741C49.6979 51.5277 49.4741 51.3039 49.4741 51.0277V44.7824C49.4741 44.5063 49.2502 44.2824 48.9741 44.2824H42.7288C42.4527 44.2824 42.2288 44.0586 42.2288 43.7824V42.7124C42.2288 42.4362 42.4527 42.2124 42.7288 42.2124H48.9741C49.2502 42.2124 49.4741 41.9885 49.4741 41.7124V35.4671C49.4741 35.1909 49.6979 34.9671 49.9741 34.9671H51.0442C51.3203 34.9671 51.5442 35.1909 51.5442 35.4671V41.7124C51.5442 41.9885 51.768 42.2124 52.0442 42.2124H58.2894C58.5656 42.2124 58.7894 42.4362 58.7894 42.7124V43.7824Z" fill="white"/>
                 </svg>
-                <p className='text-sm text-[#ADAFB4]'>Ensure good lighting, no glare and all details are legible </p>
+                <p className='text-sm text-[#5B6069]'>Ensure good lighting, no glare and all details are legible </p>
                 <input
                   type="file"
                   id='back'
@@ -307,28 +307,28 @@ const ProfileTab = () => {
   {!editProfile ? <div className="flex flex-col gap-4">
     <div className='flex flex-col gap-4 mb-4'>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Verification status</p>
-        <div className={`rounded-md p-1/2 ${user.isDocumentVerified ? 'bg-[#0CBC741A]' : 'bg-red-500'}`}><p className={`${user.isDocumentVerified ? 'text-[#0CBC74]' : 'text-white'}`}>{user.isDocumentVerified ? 'Verified' : 'Unverified'}</p></div>
+        <p className='text-[#5B6069]'>Verification status</p>
+        <div className={`rounded-md p-1/2 px-2 ${user.isDocumentVerified ? 'bg-[#0CBC741A]' : 'bg-red-500'}`}><p className={`${user.isDocumentVerified ? 'text-[#0CBC74]' : 'text-white'}`}>{user.isDocumentVerified ? 'Verified' : 'Unverified'}</p></div>
       </div>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Full Name</p>
-        <p className='text-[#D6D7DA]'>{user.fullName}</p>
+        <p className='text-[#5B6069]'>Full Name</p>
+        <p className='text-[#323844] font-medium'>{user.fullName}</p>
       </div>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Username</p>
-        <p className='text-[#D6D7DA]'>{user.username}</p>
+        <p className='text-[#5B6069]'>Username</p>
+        <p className='text-[#323844] font-medium'>{user.username}</p>
       </div>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Email</p>
-        <p className='text-[#D6D7DA]'>{user.email}</p>
+        <p className='text-[#5B6069]'>Email</p>
+        <p className='text-[#323844] font-medium'>{user.email}</p>
       </div>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Phone Number</p>
-        <p className='text-[#D6D7DA]'>{user.phoneNumber}</p>
+        <p className='text-[#5B6069]'>Phone Number</p>
+        <p className='text-[#323844] font-medium'>{user.phoneNumber}</p>
       </div>
       <div className='flex justify-between'>
-        <p className='text-[#ADAFB4]'>Country</p>
-        <p className='text-[#D6D7DA]'>{user.country}</p>
+        <p className='text-[#5B6069]'>Country</p>
+        <p className='text-[#323844] font-medium'>{user.country}</p>
       </div>
     </div>
     <div className='flex justify-center'>
@@ -341,32 +341,32 @@ const ProfileTab = () => {
       <rect width="40" height="40" rx="20" fill="#EEDDFF"/>
       <path d="M10 20H30M10 20L15.7143 26M10 20L15.7143 14" stroke="#8C55C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <p className=' text-xl text-[#D6D7DA]'>Edit Profile</p>
+      <p className=' text-xl text-[#323844]'>Edit Profile</p>
     </div>
     <div className='flex flex-col'>
     <div className='flex justify-between gap-4'>
         <div className='flex flex-col w-1/2'>
-        <label className='text-[#ADAFB4] mb-2'>Full Name</label>
-        <input type='text' value={fullName} onChange={(e)=>setFullName(e.target.value)} className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] text-sm mb-2'>Full Name</label>
+        <input type='text' value={fullName} onChange={(e)=>setFullName(e.target.value)} className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080]  px-4 py-1 rounded-lg mb-2"/>
         </div>
         <div className='flex flex-col w-1/2'>
-        <label className='text-[#ADAFB4] mb-2'>User name</label>
-        <input type='text' value={username} onChange={(e)=>setUsername(e.target.value)} className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] text-sm mb-2'>User Name</label>
+        <input type='text' value={username} onChange={(e)=>setUsername(e.target.value)} className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] px-4 py-1 rounded-lg mb-2"/>
         </div>
       </div>
       <div className='flex justify-between gap-4'>
         <div className='flex flex-col w-1/2'>
-        <label className='text-[#ADAFB4] mb-2'>Email</label>
-        <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] text-sm mb-2'>Email</label>
+        <input type='text' value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] px-4 py-1 rounded-lg mb-2"/>
         </div>
         <div className='flex flex-col w-1/2'>
-        <label className='text-[#ADAFB4] mb-2'>Phone Number</label>
-        <input type='text' value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] text-sm mb-2'>Phone Number</label>
+        <input type='text' value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] px-4 py-1 rounded-lg mb-2"/>
         </div>
       </div>
       <div className='flex flex-col gap-2 mb-10'>
-        <label className='text-[#ADAFB4]'>Country</label>
-        <select value={country} onChange={(e)=>setCountry(e.target.value)} className="w-full bg-black border border-gray-700 rounded px-3 py-2">
+        <label className='text-[#5B6069] text-sm'>Country</label>
+        <select value={country} onChange={(e)=>setCountry(e.target.value)} className="w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] px-4 py-1 rounded-lg mb-2">
           <option value="">Select Country</option>
           <option value="Nigeria">Nigeria</option>
           <option value="Ghana">Ghana</option>
@@ -375,7 +375,7 @@ const ProfileTab = () => {
       </div>
     </div>
     <div className='flex justify-center gap-4'>
-      <button onClick={()=>setEditProfile(false)} className='bg-black border border-[#57661F] text-[#57661F] px-6 py-2 rounded-md'>Cancel</button>
+      <button onClick={()=>setEditProfile(false)} className='border border-[#57661F] text-[#57661F] px-6 py-2 rounded-md'>Cancel</button>
       <button onClick={handleSubmit} className='bg-[#CAEB4B] text-[#1D2308] px-6 py-2 rounded-md text-sm'>Save Changes</button>
     </div>
   </div>}
@@ -404,31 +404,31 @@ return(
       <rect width="40" height="40" rx="20" fill="#EEDDFF"/>
       <path d="M10 20H30M10 20L15.7143 26M10 20L15.7143 14" stroke="#8C55C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <p className=' text-xl text-[#D6D7DA]'>Change Password</p>
+      <p className=' text-xl text-[#323844]'>Change Password</p>
     </div>
     <div className='flex flex-col gap-4 mt-4 mb-4'>
     <div className='flex justify-between gap-4'>
         <div className='flex flex-col w-full md:w-1/3'>
-        <label className='text-[#ADAFB4] mb-2'>Old Password</label>
-        <input type='text' value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)} placeholder='********' className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] mb-2'>Old Password</label>
+        <input type='text' value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)} placeholder='********' className="w-full bg-transparent border rounded px-3 py-2 mb-2"/>
         </div>
       </div>
       <div className='flex justify-between gap-4'>
         <div className='flex flex-col w-full md:w-1/3'>
-        <label className='text-[#ADAFB4] mb-2'>New Password</label>
-        <input type='text' value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} placeholder='********' className="w-full bg-black border border-gray-700 rounded px-3 py-2 mb-2"/>
+        <label className='text-[#5B6069] mb-2'>New Password</label>
+        <input type='text' value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} placeholder='********' className="w-full bg-transparent border rounded px-3 py-2 mb-2"/>
         </div>
       </div>
     </div>
     <div className='flex justify-center md:justify-start gap-9'>
-      <button onClick={()=>{setChangingPassword(false)}} className='bg-black border border-[#57661F] text-[#57661F] px-8 md:px-16 py-2 rounded-md'>Cancel</button>
-      <button onClick={handleSubmit} className='bg-[#CAEB4B] text-[#1D2308] px-8 md:px-16 py-2 rounded-md text-sm'>Save Password</button>
+      <button onClick={()=>{setChangingPassword(false)}} className='border border-[#57661F] text-[#57661F] px-8 md:px-12 py-2 rounded-md'>Cancel</button>
+      <button onClick={handleSubmit} className='bg-[#CAEB4B] text-[#1D2308] px-8 md:px-12 py-2 rounded-md text-sm'>Change Password</button>
     </div>
   </div>) : 
     (<div className='flex flex-col gap-4'>
-    <div className='flex items-center justify-between p-3 border border-[#282D36] rounded-lg'>
-      <p className='text-[#D6D7DA]'>Password Management</p>
-      <button onClick={()=>{setChangingPassword(true)}} className='bg-[#CAEB4B] text-[#1D2308] px-3 py-2 rounded-md'>Change Password</button>
+    <div className='flex items-center justify-between p-3 border rounded-lg'>
+      <p className='text-[#323844] font-medium'>Password Management</p>
+      <button onClick={()=>{setChangingPassword(true)}} className='bg-[#CAEB4B] text-[#1D2308] font-medium px-3 py-2 rounded-md'>Change Password</button>
     </div>
     {/* <div className='flex flex-col p-3 border border-[#282D36] rounded-lg'>
       <div className='flex items-center gap-4 mb-2'>

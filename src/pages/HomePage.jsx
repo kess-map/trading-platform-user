@@ -150,14 +150,14 @@ const HomePage = () => {
                 value={refLink}
                 readOnly
               />
-              <button onClick={()=>handleCopy(refLink)} className="bg-lime-400 px-3 py-1 rounded-lg">Copy</button>
+              <button onClick={()=>handleCopy(refLink)} className="bg-[#CAEB4B] text-[#445017] px-3 py-1 rounded-lg">Copy</button>
             </div>
           </div>
           <div>
             <label className="text-sm block mb-1 text-[#84888F]">Referral ID</label>
             <div className="flex justify-between">
               <input className="bg-transparent border px-2 py-1 rounded-lg text-[#84888F] w-[85%]" value={refCode} readOnly />
-              <button onClick={()=>handleCopy(refCode)} className="bg-lime-400 px-3 py-1 rounded-lg">Copy</button>
+              <button onClick={()=>handleCopy(refCode)} className="bg-[#CAEB4B] text-[#445017] px-3 py-1 rounded-lg">Copy</button>
             </div>
           </div>
         </div>
