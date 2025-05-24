@@ -55,17 +55,17 @@ const VerifyPhoneNumberPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md bg-black border border-zinc-700 p-8 sm:p-10 rounded-2xl shadow-2xl"
+        className="w-full max-w-md p-8 sm:p-10 rounded-2xl"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#0A0D03]">
           Verify Email
         </h2>
-        <p className="text-center text-white mb-6 text-sm sm:text-base">
+        <p className="text-center text-[#0A0D03] mb-6 text-sm sm:text-base">
           Enter the 6-digit code sent to your email
         </p>
 
@@ -75,12 +75,12 @@ const VerifyPhoneNumberPage = () => {
               <input
                 key={index}
                 ref={(el) => (inputRefs.current[index] = el)}
-                type="text"
+                type="number"
                 maxLength="1"
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-white text-xl sm:text-2xl font-bold  bg-zinc-900 border border-zinc-600 rounded-md focus:ring-2 focus:ring-lime-500 focus:outline-none"
+                className="w-10 h-10 sm:w-12 sm:h-12 text-center text-xl sm:text-2xl font-bold  text-black bg-[#FCFAFF] border border-[#00000080] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded-md no-spinner"
               />
             ))}
           </div>
@@ -94,7 +94,7 @@ const VerifyPhoneNumberPage = () => {
             disabled={isLoading || code.some((digit) => !digit)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-5 w-full py-3 px-4 bg-lime-600 hover:bg-lime-700 text-white font-bold rounded-lg shadow-md transition duration-200 disabled:opacity-50"
+            className="mt-5 w-full py-3 px-4 bg-[#CAEB4B] text-white font-bold rounded-lg shadow-md transition duration-200 disabled:opacity-50"
           >
             {isLoading ? (
               <Loader className="w-6 h-6 animate-spin text-center mx-auto" />

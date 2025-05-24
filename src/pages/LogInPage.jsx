@@ -36,32 +36,32 @@ const SignupPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      <div className="w-full max-w-xl bg-black rounded-xl shadow-lg p-8 border border-zinc-700">
-        <h2 className="text-4xl font-bold text-left mb-6">Welcome back</h2>
+    <div className="min-h-screen flex flex-col items-center justify-start px-4">
+      <div className="w-full max-w-xl  rounded-xl p-8 mt-10">
+        <h2 className="text-4xl font-bold text-left mb-6 text-[#0A0D03]">Welcome back</h2>
 
         <form onSubmit={handleSubmit} >
             <div className="w-full">
-              <label className="text-sm mb-1 block text-[#ADAFB4]">Email</label>
+              <label className="text-sm mb-1 block text-[#5B6069]">Email</label>
               <input
                 type="email"
                 name='email'
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="denilson@gmail.com"
-                className="w-full mb-8 px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                className="w-full mb-8 px-4 py-2 rounded-md text-black bg-[#FCFAFF] border border-[#00000080] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080]"
               />
             </div>
 
             <div className="w-full mb-10">
-              <label className="text-sm mb-1 block text-[#ADAFB4]">Password</label>
+              <label className="text-sm mb-1 block text-[#5B6069]">Password</label>
               <input
                 type="password"
                 name='password'
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="********"
-                className="w-full px-4 py-2 rounded-md bg-zinc-900 border border-zinc-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                className="w-full px-4 py-2 rounded-md text-black bg-[#FCFAFF] border border-[#00000080] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080]"
               />
             </div>
 
@@ -73,9 +73,6 @@ const SignupPage = () => {
             Log In
           </button>
         </form>
-      </div>
-      <div className='mt-5'>
-        <LiveSessionTimer redBgColour={'bg-black'} greenBgColor={'bg-black'} primaryTextColour={'text-[#ADAFB4]'} greenTextColour={'text-white'} redTextColour={'text-white'} labelTextColour={'text-[#ADAFB4]'} bottomLabelColour={'text-[#ADAFB4]'}/>
       </div>
     </div>
   );

@@ -55,11 +55,9 @@ function App() {
   useEffect(()=>{
     checkAuth()
   },[checkAuth])
-
-  if(isCheckingAuth) return <LoadingSpinner/>
   return (
     <>
-      <div className={`min-h-screen w-full`}>
+      <div className={`min-h-screen w-full bg-gradient-to-b from-[#EEDDFF] via-[#FCFAFF] to-[#FCFAFF]`}>
     {isProtectedPage && isSidebarOpen && <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar}/>}
       {isShowAuthNavbarPage && !isLandingPage && <NavbarAuth />}
       {isProtectedPage && !isLandingPage && <NavbarMain onMenuClick={toggleSidebar} />}

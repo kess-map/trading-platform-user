@@ -5,7 +5,7 @@ const NavbarAuth = () => {
   const isLoginPage = location.pathname === '/login';
 
   return (
-    <nav className="bg-[#FCFAFF] shadow-md w-full py-4 px-6 flex justify-between items-center">
+    <nav className="w-full py-4 px-6 flex justify-between items-center">
       <div className="text-2xl font-bold text-[#0A0D03]">Logo</div>
       <Link
         to={isLoginPage ? '/signup' : '/login'}

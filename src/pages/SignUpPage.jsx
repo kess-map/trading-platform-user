@@ -52,8 +52,8 @@ const SignupPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FCFAFF] text-white px-4">
-      <div className="w-full max-w-xl bg-[#FCFAFF] rounded-xl p-8">
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-xl rounded-xl p-8">
         <h2 className="text-3xl font-bold text-center mb-2 text-[#0A0D03]">Create account</h2>
         <p className="text-center text-sm text-[#0A0D03] mb-6">
           Join thousands of traders and investors thriving on our cutting-edge platform today!
