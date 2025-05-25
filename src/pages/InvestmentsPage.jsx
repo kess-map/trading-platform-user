@@ -113,7 +113,7 @@ export default function InvestmentsPage() {
   return (
     <div className="p-4 md:p-8 min-h-screen w-full max-w-full overflow-x-hidden">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <h1 className="text-3xl font-bold text-[#323844]">Investment</h1>
+        <h1 className="text-xl md:text-3xl font-bold text-[#323844]">Investment</h1>
         <div className="flex flex-wrap gap-2 sm:gap-3">
           <button onClick={()=>{navigate('/create-investment')}} className="text-sm sm:text-base bg-[#CAEB4B] text-black font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-lime-600 transition">
             New Investment
