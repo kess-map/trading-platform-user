@@ -49,12 +49,12 @@ export default function CreateSellOrderForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <form className="w-full max-w-md p-6 bg-black rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-[#D6D7DA] text-left">Create sell order</h2>
+      <form className="w-full max-w-md p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-[#323844] text-left">Create sell order</h2>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1 text-[#ADAFB4]">Amount</label>
-          <select name="amount" className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" value={formData.amount} onChange={handleChange}>
+          <label className="block text-sm mb-1 text-[#5B6069]">Amount</label>
+          <select name="amount" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.amount} onChange={handleChange}>
             <option value="">Select</option>
             <option value={25000}>25,000</option>
             <option value={50000}>50,000</option>
@@ -70,9 +70,9 @@ export default function CreateSellOrderForm() {
         </div>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1  text-[#ADAFB4]">Payment method</label>
+          <label className="block text-sm mb-1  text-[#5B6069]">Payment method</label>
           <select
-            className="w-full border border-[#5B6069] p-2  rounded-lg bg-black text-[#ADAFB4]"
+            className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black"
             value={paymentMethod}
             onChange={(e) => {
               setPaymentMethod(e.target.value);
@@ -87,33 +87,33 @@ export default function CreateSellOrderForm() {
         {paymentMethod === 'bank' && (
           <>
             <div className="mb-3">
-              <label className="block text-sm mb-1 text-[#ADAFB4]">Bank name</label>
-              <select name="bankName" className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" value={formData.bankName} onChange={handleChange}>
+              <label className="block text-sm mb-1 text-[#5B6069]">Bank name</label>
+              <select name="bankName" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.bankName} onChange={handleChange}>
                 <option value="">Select</option>
                 <option value="Access Bank">Access Bank</option>
                 <option value="GTBank">GTBank</option>
               </select>
             </div>
             <div className="mb-3">
-              <label className="block text-sm mb-1 text-[#ADAFB4]">Account name</label>
+              <label className="block text-sm mb-1 text-[#5B6069]">Account name</label>
               <input
                 type="text"
                 name="accountName"
                 value={formData.accountName}
                 onChange={handleChange}
                 placeholder="e.g. Nicole Soft"
-                className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]"
+                className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black"
               />
             </div>
             <div className="mb-3">
-              <label className="block text-sm mb-1 text-[#ADAFB4]">Account number</label>
+              <label className="block text-sm mb-1 text-[#5B6069]">Account number</label>
               <input
                 type="text"
                 name="accountNumber"
                 value={formData.accountNumber}
                 onChange={handleChange}
                 placeholder="e.g. 5467454654"
-                className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]"
+                className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black"
               />
             </div>
           </>
@@ -122,22 +122,22 @@ export default function CreateSellOrderForm() {
         {paymentMethod === 'usdt' && (
           <>
             <div className="mb-3">
-              <label className="block text-sm mb-1 text-[#ADAFB4]">Network</label>
-              <select name="network" className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" value={formData.network} onChange={handleChange}>
+              <label className="block text-sm mb-1 text-[#5B6069]">Network</label>
+              <select name="network" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.network} onChange={handleChange}>
                 <option value="">Select</option>
                 <option value="TRC20">TRC20</option>
                 <option value="ERC20">ERC20</option>
               </select>
             </div>
             <div className="mb-3">
-              <label className="block text-sm mb-1 text-[#ADAFB4]">Wallet address</label>
+              <label className="block text-sm mb-1 text-[#5B6069]">Wallet address</label>
               <input
                 type="text"
                 name="walletAddress"
                 value={formData.walletAddress}
                 onChange={handleChange}
                 placeholder="e.g. Your crypto wallet"
-                className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]"
+                className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black"
               />
             </div>
           </>

@@ -229,12 +229,12 @@ const handleAppealSubmit = async()=>{
           </div>
       )}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <h1 className="text-2xl font-bold text-[#D6D7DA]">My Orders</h1>
+        <h1 className="text-xl md:text-3xl font-bold text-[#323844]">My Orders</h1>
         <div className="flex flex-wrap gap-2 sm:gap-3">
-          <button onClick={()=>{navigate('/create-buy-order')}} className="text-sm sm:text-base font-semibold bg-black border border-[#57661F] text-[#57661F] px-3 sm:px-4 py-1.5 sm:py-2 rounded-md shadow-sm hover:bg-gray-50 transition">
+          <button onClick={()=>{navigate('/create-buy-order')}} className="text-sm sm:text-base font-semibold bg-transparent border border-[#57661F] text-[#57661F] px-3 sm:px-4 py-1.5 sm:py-2 rounded-md">
             Create Buy Request
           </button>
-          <button onClick={()=>{navigate('/create-sell-order')}} className="text-sm sm:text-base bg-[#CAEB4B] text-black font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-lime-600 transition">
+          <button onClick={()=>{navigate('/create-sell-order')}} className="text-sm sm:text-base bg-[#CAEB4B] text-[#1D2308] font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-md">
             Create Sell Request
           </button>
         </div>
@@ -242,13 +242,13 @@ const handleAppealSubmit = async()=>{
 
       <div className="flex flex-col md:flex-row w-full h-full gap-6 mt-6">
         <div className="grid grid-cols-1 gap-4 md:w-1/2 w-full">
-          <div className="rounded-lg p-4 shadow-sm border border-[#5B6069]">
-            <h3 className="text-[#ADAFB4]">Pending Sell Orders</h3>
-            <p className="text-2xl font-bold text-[#D6D7DA] mt-2">{orders.sellOrders.pending.length || 0}</p>
+          <div className="rounded-lg p-4 shadow-sm border">
+            <h3 className="text-[#5B6069]">Pending Sell Orders</h3>
+            <p className="text-2xl font-bold text-[#323844] mt-2">{orders.sellOrders.pending.length || 0}</p>
           </div>
-          <div className="border border-[#5B6069] rounded-lg p-4 shadow-sm">
-            <h3 className="text-[#ADAFB4]">Pending Buy Orders</h3>
-            <p className="text-2xl font-bold text-[#D6D7DA] mt-2">{orders.buyOrders.pending.length || 0}</p>
+          <div className="border rounded-lg p-4">
+            <h3 className="text-[#5B6069]">Pending Buy Orders</h3>
+            <p className="text-2xl font-bold text-[#323844] mt-2">{orders.buyOrders.pending.length || 0}</p>
           </div>
         </div>
         <div className="md:w-1/2 w-full">
@@ -268,13 +268,13 @@ const handleAppealSubmit = async()=>{
       <div className="flex gap-4 mb-4 mt-4">
     <button
       onClick={() => setOrderType('buy')}
-      className={`px-4 py-2 rounded-3xl ${orderType === 'buy' ? 'bg-[#57661F] text-white' : 'bg-[#57661F33] text-[#ADAFB4]'}`}
+      className={`px-4 py-2 rounded-3xl ${orderType === 'buy' ? 'bg-[#57661F] text-white' : 'bg-[#EBEBECCC] text-[#5B6069]'}`}
     >
       Buy Orders
     </button>
     <button
       onClick={() => setOrderType('sell')}
-      className={`px-4 py-2 rounded-3xl ${orderType === 'sell' ? 'bg-[#57661F] text-white' : 'bg-[#57661F33] text-[#ADAFB4]'}`}
+      className={`px-4 py-2 rounded-3xl ${orderType === 'sell' ? 'bg-[#57661F] text-white' : 'bg-[#EBEBECCC] text-[#5B6069]'}`}
     >
       Sell Orders
     </button>
@@ -287,8 +287,8 @@ const handleAppealSubmit = async()=>{
         onClick={() => setActiveTab(tab)}
         className={`pb-2 capitalize transition ${
           activeTab === tab
-            ? 'border-b-2 border-[#EBEBEC] font-semibold text-[#D6D7DA] '
-            : 'text-[#D6D7DA]'
+            ? 'border-b-2 border-[#1E2229] font-semibold text-[#323844] '
+            : 'text-[#323844]'
         }`}
       >
         {tab}
@@ -302,39 +302,39 @@ const handleAppealSubmit = async()=>{
   const displayOrder = isMatched ? order.sellOrder : order;
 
   return (
-    <div key={order._id} className="border rounded p-4 flex flex-col md:flex-row justify-between items-start md:items-center">
+    <div key={order._id} className="border rounded-lg p-4 flex flex-col md:flex-row justify-between items-start md:items-center">
       <div>
-        <p className="font-medium text-[#ADAFB4] truncate">Order #{order._id}</p>
+        <p className="font-medium text-[#5B6069] truncate">Order #{order._id}</p>
         <div className='flex items-center'>
-        <p className="font-medium text-[#ADAFB4]">{isMatched ? order.seller.fullName : order.user.fullName} |</p> <span className='text-[#ADAFB4] ml-2'> {isMatched ? order.seller.phoneNumber : order.user.phoneNumber}</span>
+        <p className="font-semibold text-[#5B6069]">{isMatched ? order.seller.fullName : order.user.fullName} |</p> <span className='text-[#5B6069] ml-2'> {isMatched ? order.seller.phoneNumber : order.user.phoneNumber}</span>
         <Copy
-          className="w-4 h-4 cursor-pointer text-gray-500 hover:text-black ml-2"
+          className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
           onClick={() => handleCopy(order.user?.phoneNumber)}
         />
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-[#1E2229]">
           {displayOrder.paymentMethod === 'bank' ? 'Bank Transfer' : "Crypto(USDT)"} 
-          {orderType === 'sell' && <span>{displayOrder.paymentMethod === 'bank' ? <span> • {displayOrder.bankName}</span> : <span> • {displayOrder.cryptoNetwork}</span>}</span>}
+          {orderType === 'sell' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
         </p>
-        <p className="text-sm text-gray-500 flex items-center">
+        <p className="text-sm text-[#1E2229] flex items-center">
         {orderType === 'sell' && <><span> {displayOrder.paymentMethod === 'bank' 
             ? `Account no: ${displayOrder.accountNumber}` 
             : `Wallet Address: ${displayOrder.cryptoAddress}`}</span>
           <Copy
-            className="w-4 h-4 cursor-pointer text-gray-500 hover:text-black ml-2"
+            className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
             onClick={() => handleCopy(displayOrder.paymentMethod === 'bank' ? displayOrder.accountNumber : displayOrder.cryptoAddress)}
           /></>}
         </p>
       </div>
       
       <div className="mt-2 md:mt-0 flex justify-between w-1/2 items-center gap-4">
-        <p className="font-semibold text-[#D6D7DA]">{order.amount?.toLocaleString()}</p>
+        <p className="font-semibold text-[#323844]">{order.amount?.toLocaleString()}</p>
         
         {!isMatched && order.status === 'pending' && (
-          <button onClick={()=>{cancelOrder(order._id)}} className=" px-3 py-1 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Cancel</button>
+          <button onClick={()=>{cancelOrder(order._id)}} className=" px-10 py-2 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Cancel</button>
         )}
         {order.status === 'completed' && (
-          <span className=" px-6 py-1 text-sm rounded bg-[#0CBC741A] text-[#0CBC74]">Completed</span>
+          <span className=" px-8 py-2 text-sm rounded bg-[#0CBC741A] text-[#0CBC74]">Completed</span>
         )}
 
         {isMatched && (

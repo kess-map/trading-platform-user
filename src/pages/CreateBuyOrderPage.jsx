@@ -26,14 +26,14 @@ export default function CreateSellOrderForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <form className="w-full max-w-md p-6 bg-black rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-[#D6D7DA] text-left">Create buy order</h2>
+      <form className="w-full max-w-md p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-[#323844] text-left">Create buy order</h2>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1 text-[#ADAFB4]">Amount</label>
+          <label className="block text-sm mb-1 text-[#5B6069]">Amount</label>
           <select 
           name="amount" 
-          className="w-full border border-[#5B6069] p-2 rounded-lg bg-black text-[#ADAFB4]" 
+          className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" 
           value={amount} 
           onChange={(e) => {
             setAmount(e.target.value);
@@ -53,9 +53,9 @@ export default function CreateSellOrderForm() {
         </div>
 
         <div className="mb-3">
-          <label className="block text-sm mb-1  text-[#ADAFB4]">Payment method</label>
+          <label className="block text-sm mb-1  text-[#5B6069]">Payment method</label>
           <select
-            className="w-full border border-[#5B6069] p-2  rounded-lg bg-black text-[#ADAFB4]"
+            className="w-full border text-black bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg"
             value={paymentMethod}
             onChange={(e) => {
               setPaymentMethod(e.target.value);

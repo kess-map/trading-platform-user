@@ -63,7 +63,7 @@ const HomePage = () => {
   return (
     <div className="w-full min-h-screen px-4 md:px-8 py-6">
       <div className='flex justify-between'>
-      <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#1E2229]">Welcome, {user.username}</h2>
+      <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#1E2229] flex flex-col sm:flex-row gap-2">Welcome <span>{user.username}</span></h2>
       <button className='bg-[#CAEB4B] w-40 h-10 rounded-xl font-medium'>Buy/sell token</button>
       </div>
 
