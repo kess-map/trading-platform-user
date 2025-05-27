@@ -88,11 +88,7 @@ export default function CreateSellOrderForm() {
           <>
             <div className="mb-3">
               <label className="block text-sm mb-1 text-[#5B6069]">Bank name</label>
-              <select name="bankName" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.bankName} onChange={handleChange}>
-                <option value="">Select</option>
-                <option value="Access Bank">Access Bank</option>
-                <option value="GTBank">GTBank</option>
-              </select>
+              <input name="bankName" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.bankName} onChange={handleChange}/>
             </div>
             <div className="mb-3">
               <label className="block text-sm mb-1 text-[#5B6069]">Account name</label>
@@ -123,11 +119,7 @@ export default function CreateSellOrderForm() {
           <>
             <div className="mb-3">
               <label className="block text-sm mb-1 text-[#5B6069]">Network</label>
-              <select name="network" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.network} onChange={handleChange}>
-                <option value="">Select</option>
-                <option value="TRC20">TRC20</option>
-                <option value="ERC20">ERC20</option>
-              </select>
+              <input name="network" className="w-full border bg-[#FCFAFF] placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] p-2 rounded-lg text-black" value={formData.network} onChange={handleChange}/>
             </div>
             <div className="mb-3">
               <label className="block text-sm mb-1 text-[#5B6069]">Wallet address</label>

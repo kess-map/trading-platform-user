@@ -47,6 +47,7 @@ const VerificationTab = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [showVerificationTypes, setShowVerificationTypes] = useState(false);
     const [verificationType, setVerificationType] = useState('');
+    const [idNumber, setIdNumber] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [frontImage, setFrontImage] = useState(null);
     const [backImage, setBackImage] = useState(null);
@@ -70,9 +71,9 @@ const VerificationTab = () => {
 
 
     const countryVerificationMap = {
-        Ghana: ['Voter ID', 'Ghana Card', 'Driver’s License'],
+        Ghana: ['National Passport', 'Driver’s License'],
         Nigeria: ['NIN Slip'],
-        Kenya: ['National ID', 'Passport'],
+        Kenya: ['National Passport', 'Driver’s License'],
     };
 
     const verificationOptions = countryVerificationMap[selectedCountry] || [];
@@ -104,11 +105,12 @@ const VerificationTab = () => {
       };
     
       const handleSubmit = async() => {
-        if(!selectedCountry || !verificationType || !frontPreview || !backPreview) return toast.error('Fill in all fields')
+        if(!selectedCountry || !verificationType || !frontPreview || !backPreview || !idNumber) return toast.error('Fill in all fields')
 
         await uploadIdVerification({
           country: selectedCountry,
-          verificationType, 
+          verificationType,
+          idNumber, 
           frontImage: frontPreview, 
           backImage: backPreview 
         })
@@ -173,12 +175,20 @@ const VerificationTab = () => {
           <select 
             value={verificationType}
             onChange={(e) => setVerificationType(e.target.value)}
-            className="space-y-2 w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded px-3 py-2">
+            className="space-y-2 w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded px-3 py-2 mb-2">
                 <option value="">Select</option>
             {verificationOptions.map((option) => (
               <option value={option}>{option}</option>
             ))}
           </select>
+
+          <p className="text-sm mb-2 text-[#5B6069]">Enter ID Number</p>
+          <input
+            type='text'
+            value={idNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
+            className="space-y-2 w-full text-black bg-[#FCFAFF] border placeholder-[#84888F] focus:outline-none focus:ring-2 focus:ring-[#00000080] rounded px-3 py-2">
+          </input>
           {showVerificationTypes && <button onClick={()=>{if(!verificationType)return toast.error('Select a verification type')
             setShowModal(true)}} className="w-full mt-2 bg-[#CAEB4B]  text-[#1D2308] py-2 rounded-md flex items-center justify-center font-semibold">
           Continue
@@ -198,7 +208,7 @@ const VerificationTab = () => {
               <div className="rounded flex flex-col justify-start">
                 <p className="text-sm text-left mb-2 text-[#333333]">Front View</p>
                 {frontPreview ? (<>
-                    <img src={frontPreview} alt="Front" className="h-full object-cover rounded-md" />
+                    <img src={frontPreview} alt="Front" className="h-full object-contain rounded-md max-h-52" />
                     <button onClick={()=>{ setFrontImage(null)
                         setFrontPreview('')}} className='bg-red-500 mx-auto px-4 rounded-md mt-2'>Remove</button>
                 </>
@@ -223,7 +233,7 @@ const VerificationTab = () => {
               <div className="rounded flex flex-col justify-start">
                 <p className="text-sm text-left mb-2 text-[#333333]">Back View</p>
                 {backPreview ? (<>
-                        <img src={backPreview} alt="back" className="h-full object-cover rounded-md" />
+                        <img src={backPreview} alt="back" className="h-full object-cover rounded-md max-h-52" />
                         <button onClick={()=>{ setBackImage(null)
                         setBackPreview('')}} className='bg-red-500 mx-auto px-4 rounded-md mt-2'>Remove</button>
                 </>

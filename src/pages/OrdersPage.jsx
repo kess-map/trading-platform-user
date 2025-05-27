@@ -11,8 +11,8 @@ import toast from 'react-hot-toast';
 export default function MyOrdersOverview() {
   const navigate = useNavigate()
   const [orders, setOrders] = useState({
-    buyOrders: { pending: [], approved: [], completed: [] },
-    sellOrders: { pending: [], approved: [], completed: [] }
+    buyOrders: { pending: [], approved: [], completed: [], cancelled: [] },
+    sellOrders: { pending: [], approved: [], completed: [], cancelled: [] }
   });
   const [orderType, setOrderType] = useState('buy');
   const [activeTab, setActiveTab] = useState('pending');
@@ -281,7 +281,7 @@ const handleAppealSubmit = async()=>{
   </div>
 
   <div className="flex gap-6 border-b mb-4">
-    {['pending', ...(isLive ? ['approved'] : []), 'completed'].map((tab) => (
+    {['pending', ...(isLive ? ['approved'] : []), 'completed', 'cancelled'].map((tab) => (
       <button
         key={tab}
         onClick={() => setActiveTab(tab)}
@@ -335,6 +335,9 @@ const handleAppealSubmit = async()=>{
         )}
         {order.status === 'completed' && (
           <span className=" px-8 py-2 text-sm rounded bg-[#0CBC741A] text-[#0CBC74]">Completed</span>
+        )}
+        {order.status === 'cancelled' && (
+          <span className=" px-8 py-2 text-sm rounded bg-[#FF596D4D] text-[#FF4C61]">Cancelled</span>
         )}
 
         {isMatched && (

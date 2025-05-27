@@ -329,7 +329,7 @@ const LandingPage = () => {
             </div>
               </div>
               <div className='flex justify-center items-center'>
-              <svg className='max-w-[350px] md:max-w-4xl' width="450" height="450" viewBox="0 0 583 572" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className='max-w-[250px] sm:max-w-4xl' width="450" height="450" viewBox="0 0 583 572" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_641_8103)">
                 <g opacity="0.7">
                 <path d="M442.153 285.258C444.185 290.108 452.897 298.059 452.903 298.066C452.994 298.148 456.404 290.736 456.566 290.245C458.436 284.548 458.694 272.439 453.257 268.49C449.34 265.648 444.095 267.275 441.757 271.285C439.37 275.382 440.424 281.126 442.153 285.258Z" fill="#7D922D"/>
@@ -528,7 +528,7 @@ const LandingPage = () => {
               </button>
             </div>
               </div>
-              <div className='hidden md:flex justify-center items-center mx-auto'>
+              <div className='hidden lg:flex justify-center items-center mx-auto'>
                 <img src="/landing-white-4.png" alt="" />
               </div>
             </div>
