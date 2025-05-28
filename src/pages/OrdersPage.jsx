@@ -315,6 +315,7 @@ const handleAppealSubmit = async()=>{
         <p className="text-sm text-[#1E2229]">
           {displayOrder.paymentMethod === 'bank' ? 'Bank Transfer' : "Crypto(USDT)"} 
           {orderType === 'sell' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
+          {isMatched && orderType === 'buy' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
         </p>
         <p className="text-sm text-[#1E2229] flex items-center">
         {orderType === 'sell' && <><span> {displayOrder.paymentMethod === 'bank' 
