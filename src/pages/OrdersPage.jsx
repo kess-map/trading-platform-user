@@ -324,6 +324,15 @@ const handleAppealSubmit = async()=>{
             className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
             onClick={() => handleCopy(displayOrder.paymentMethod === 'bank' ? displayOrder.accountNumber : displayOrder.cryptoAddress)}
           /></>}
+          {isMatched && orderType === 'buy' &&
+          <><span> {displayOrder.paymentMethod === 'bank' 
+            ? `Account no: ${displayOrder.accountNumber}` 
+            : `Wallet Address: ${displayOrder.cryptoAddress}`}</span>
+          <Copy
+            className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
+            onClick={() => handleCopy(displayOrder.paymentMethod === 'bank' ? displayOrder.accountNumber : displayOrder.cryptoAddress)}
+          /></>
+          }
         </p>
       </div>
       

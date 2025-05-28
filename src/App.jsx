@@ -31,6 +31,10 @@ function App() {
     if(!isAuthenticated && !user){
       return <Navigate to={'/login'} replace/>
     }
+
+    if(!user.isPhoneVerified){
+      return <Navigate to={'/verify-phone'} replace/>
+    }
   
     return children
   }
