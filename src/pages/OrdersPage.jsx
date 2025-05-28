@@ -343,7 +343,7 @@ const handleAppealSubmit = async()=>{
         {isMatched && (
           <>
             {orderType === 'buy' && order.paymentStatus === 'pending' && (
-              <div className='flex flex-col gap-4'>
+              <div className='hidden md:flex flex-col gap-4'>
                 <div className='flex gap-2'>
                   <div className='border border-[#FF4C61] rounded-xl p-1'>
                     <p className='text-[#FF4C61] text-xs'>Awaiting payment</p>
@@ -359,7 +359,7 @@ const handleAppealSubmit = async()=>{
               </div>
             )}
             {orderType === 'buy' && order.paymentStatus === 'paid' && (
-              <div className='flex flex-col gap-4'>
+              <div className='hidden md:flex flex-col gap-4'>
                 <div className='flex justify-end gap-2'>
                   <div className='border border-[#FF4C61] rounded-xl p-1'>
                     <p className='text-[#FF4C61] text-xs'>{getRemainingMinutes(order.paidAt) <= 0 ? 'Late Confirmation':'Awaiting confirmation'}</p>
@@ -376,7 +376,7 @@ const handleAppealSubmit = async()=>{
 
             {orderType === 'sell' && order.paymentStatus === 'pending' && (
               <>
-                <div className='flex flex-col gap-4'>
+                <div className='hidden md:flex flex-col gap-4'>
                 <div className='flex justify-end gap-2'>
                   <div className='border border-[#FF4C61] rounded-xl p-1'>
                     <p className='text-[#FF4C61] text-xs'>Awaiting payment</p>
@@ -387,7 +387,7 @@ const handleAppealSubmit = async()=>{
             )}
             {orderType === 'sell' && order.paymentStatus === 'paid' && (
               <>
-                <div className='flex flex-col gap-4'>
+                <div className='hidden md:flex flex-col gap-4'>
                 <div className='flex justify-end gap-2'>
                   <div className='border border-[#FF4C61] rounded-xl p-1'>
                     <p className='text-[#FF4C61] text-xs'>Awaiting confirmation</p>
@@ -404,8 +404,74 @@ const handleAppealSubmit = async()=>{
             )}
           </>
         )}
-      </div>
     </div>
+        {isMatched && (
+          <>
+          {orderType === 'buy' && order.paymentStatus === 'pending' && (
+            <div className='flex flex-col gap-4  md:hidden mt-5 w-full'>
+                <div className='flex gap-2 justify-between'>
+                  <div className='border border-[#FF4C61] rounded-xl p-1 w-full'>
+                    <p className='text-[#FF4C61] text-xs text-center'>Awaiting payment</p>
+                  </div>
+                  <div className='bg-[#E0742B33] rounded-xl p-1 w-full'>
+                    <p className='text-[#E0742B] text-xs text-center'>Time left: {getRemainingMinutes(buyOrderTimer, 120)}mins</p>
+                  </div>
+                </div>
+                <div className='flex justify-end'>
+                <button onClick={()=>{setSelectedOrderId(order._id)
+                  setShowModal(true)}} className="bg-[#CAEB4B] text-[#1D2308] px-20 py-3 text-sm rounded-lg w-full">Paid</button>
+                </div>
+              </div>
+          )}
+
+          {orderType === 'buy' && order.paymentStatus === 'paid' && (
+              <div className='flex flex-col gap-4 md:hidden mt-5 w-full'>
+                <div className='flex justify-end gap-2 w-full'>
+                  <div className='border border-[#FF4C61] rounded-xl p-1 w-full'>
+                    <p className='text-[#FF4C61] text-xs text-center'>{getRemainingMinutes(order.paidAt) <= 0 ? 'Late Confirmation':'Awaiting confirmation'}</p>
+                  </div>
+                  {getRemainingMinutes(order.paidAt) > 0 && <div className='bg-[#E0742B33] rounded-xl p-1'>
+                    <p className='text-[#E0742B] text-xs'>Time left: {getRemainingMinutes(order.paidAt)}mins</p>
+                  </div>}
+                </div>
+                <div className='flex justify-end w-full'>
+                <button onClick={()=>{setAppealModal(order)}} disabled={getRemainingMinutes(order.paidAt) > 0} className={`${getRemainingMinutes(order.paidAt) <= 0 ? 'bg-[#E0742B4D] text-[#E0742B]' : 'bg-[#5B6069] text-[#D6D7DA]'} px-20 py-3 text-sm rounded-lg w-full`}>Appeal</button>
+                </div>
+              </div>
+          )}
+
+           {orderType === 'sell' && order.paymentStatus === 'pending' && (
+              <>
+                <div className='flex flex-col gap-4 mt-5 w-full md:hidden'>
+                <div className='flex justify-end gap-2 w-full'>
+                  <div className='border border-[#FF4C61] rounded-xl p-1 w-full'>
+                    <p className='text-[#FF4C61] text-xs text-center'>Awaiting payment</p>
+                  </div>
+                </div>
+              </div>
+              </>
+           )}
+
+           {orderType === 'sell' && order.paymentStatus === 'paid' && (
+              <>
+                <div className='flex flex-col gap-4 mt-5 w-full md:hidden'>
+                <div className='flex flex-col justify-end gap-2'>
+                  <button onClick={()=>{setSelectedOrder(order.matchedOrder)
+                  setViewModal(true)}} className="bg-[#8C55C11A] text-[#8C55C1] px-5 py-3 text-sm rounded-lg">View payment</button>
+                  <div className='border border-[#FF4C61] rounded-xl p-1'>
+                    <p className='text-[#FF4C61] text-xs text-center'>Awaiting confirmation</p>
+                  </div>
+                </div>
+                <div className='flex justify-center gap-3'>
+                <button onClick={()=>{setAppealModal(order)}} className="bg-[#E0742B33] text-[#E0742B] px-5 py-3 text-sm rounded-lg w-full">Appeal</button>
+                <button onClick={()=>{handleConfirmPayment(order._id)}} className="bg-[#CAEB4B] text-[#1D2308] px-5 py-3 text-sm rounded-lg w-full">Confirm Payment</button>
+                </div>
+              </div>
+              </>
+           )}
+          </>
+        )}
+      </div>
   );
 })}
   </div>}
