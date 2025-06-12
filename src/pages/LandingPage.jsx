@@ -48,7 +48,9 @@ const LandingPage = () => {
         <div className="font-sans px-4 py-6 md:px-12">
           {/* Navbar */}
           <nav className="flex justify-between items-center mb-10">
-            <div className="text-2xl font-bold">Logo</div>
+            <div className='h-14 overflow-hidden'>
+              <img src="/logo2.png" alt="logo" className='object-contain h-14'/>
+            </div>
               <nav className='hidden sm:flex gap-5'>
                 <a href="#why">Why Us</a>
                 <a href="#how">How it works</a>

@@ -6,11 +6,13 @@ const NavbarMain = ({onMenuClick}) => {
   const {logout} = useAuthStore()
   return (
     <nav className="w-full py-4 px-6 flex justify-between items-center">
-      <div className='flex'>
+      <div className='flex gap-4'>
         <button onClick={onMenuClick} className="md:hidden text-white text-2xl ">
             ☰
           </button>
-        <div className="ml-5 text-2xl font-bold text-[#0A0D03]">Logo</div>
+        <div className='h-14 overflow-hidden'>
+          <img src="/logo2.png" alt="logo" className='object-contain h-14'/>
+        </div>
       </div>
 
       <ul className="hidden md:flex items-center space-x-6 text-sm font-medium text-[#0A0D03]">
