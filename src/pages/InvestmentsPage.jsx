@@ -208,12 +208,12 @@ export default function InvestmentsPage() {
               {expandedCardIndex === index ? 'Hide' : 'View'}
             </button>
       
-            <button
+            {new Date(item.countdown) > new Date() &&<button
               onClick={() => handleReinvest(item)} // implement this function
               className="text-sm sm:text-base w-full bg-[#CAEB4B] text-[#1D2308] font-semibold px-4 py-2 rounded-lg  transition"
             >
               Re-invest
-            </button>
+            </button>}
           </div>
       
           {expandedCardIndex === index && (
@@ -226,7 +226,7 @@ export default function InvestmentsPage() {
                   </div>
                   <div className="flex justify-between mt-1">
                     <p className='text-[#323844]'>{item.percentage.toFixed(0)}%</p>
-                    <p className='text-[#323844]'>{getRemainingDays(item.countdown)} days left</p>
+                    <p className='text-[#323844]'>{getRemainingDays(item.countdown)}</p>
                   </div>
                 </div>
               </div>

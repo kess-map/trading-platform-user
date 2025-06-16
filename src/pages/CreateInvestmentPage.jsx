@@ -56,9 +56,10 @@ export default function CreateSellOrderForm() {
                 onChange={(e) => setDuration(JSON.parse(e.target.value))}
                 >
                 <option value="">Select</option>
-                <option value={JSON.stringify({ days: 6, roi: 15 })}>6 days - 15%</option>
-                <option value={JSON.stringify({ days: 10, roi: 30 })}>10 days - 30%</option>
-                <option value={JSON.stringify({ days: 14, roi: 50 })}>14 days - 50%</option>
+                <option value={JSON.stringify({ days: 6, roi: 10 })}>6 days - 10%</option>
+                <option value={JSON.stringify({ days: 14, roi: 25 })}>14 days - 25%</option>
+                <option value={JSON.stringify({ days: 20, roi: 50 })}>20 days - 75%</option>
+                <option value={JSON.stringify({ days: 30, roi: 100 })}>30 days - 100%</option>
             </select>
         </div>
 

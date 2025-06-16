@@ -66,6 +66,7 @@ export default function CreateSellOrderForm() {
             <option value={300000}>300,000</option>
             <option value={400000}>400,000</option>
             <option value={500000}>500,000</option>
+            <option value={950000}>950,000</option>
           </select>
         </div>
 
