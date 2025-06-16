@@ -31,7 +31,6 @@ const Sidebar = ({ isOpen, onClose }) => {
         <Link onClick={onClose} to="/investment" className="block hover:text-gray-400">Investment</Link>
         <Link onClick={onClose} to="/affiliate" className="block hover:text-gray-400">Affiliate & Referral</Link>
         <Link onClick={onClose} to="/settings" className="block hover:text-gray-400">Settings</Link>
-        <Link onClick={onClose} to="/support" className="block hover:text-gray-400">Support</Link>
       </nav>
     </div>
   );

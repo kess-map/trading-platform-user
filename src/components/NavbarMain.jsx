@@ -21,7 +21,6 @@ const NavbarMain = ({onMenuClick}) => {
         <li><Link to="/investment" className="hover:text-primary">Investment</Link></li>
         <li><Link to="/affiliate" className="hover:text-primary">Affiliate & Referral</Link></li>
         <li><Link to="/settings" className="hover:text-primary">Settings</Link></li>
-        <li><Link to="/support" className="hover:text-primary">Support</Link></li>
       </ul>
 
       <div className="flex items-center space-x-4">

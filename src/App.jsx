@@ -125,10 +125,6 @@ function App() {
             <ProtectedRoute>
               <NotificationsPage />
             </ProtectedRoute>} />
-          <Route path={'/support'} element={
-            <ProtectedRoute>
-              <SupportPage />
-            </ProtectedRoute>} />
           <Route path={'*'} element={<Navigate to={'/'}/>} />
           </>}
       </Routes>

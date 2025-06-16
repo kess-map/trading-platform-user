@@ -9,5 +9,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- <script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siqd1ec7f82314c218720f92705ddc58035b04893d4d6404932144af1024ddbecba" defer></script> -->
+     <script type="text/javascript">
+      var $zoho = $zoho || {};
+      $zoho.salesiq = $zoho.salesiq || {
+        widgetcode: 'siqd1ec7f82314c218720f92705ddc58035b04893d4d6404932144af1024ddbecba',
+        values: {},
+        ready: function () {}
+      };
+      var d = document;
+      s = d.createElement('script');
+      s.type = 'text/javascript';
+      s.id = 'zsiqscript';
+      s.defer = true;
+      s.src = 'https://salesiq.zoho.com/widget';
+      t = d.getElementsByTagName('script')[0];
+      t.parentNode.insertBefore(s, t);
+    </script>
   </body>
 </html>
