@@ -15,7 +15,7 @@ const SignupPage = () => {
   });
 
   useEffect(()=>{
-        if(user){
+        if(user && user.isPhoneVerified){
           navigate('/home')
         }
       },[user])
