@@ -10,6 +10,8 @@ export const useAuthStore = create((set)=> ({
     message:null,
     pendingVerification: false,
 
+    setUser: (user) => set({ user, isAuthenticated: true }),
+
     signup: async(formData)=>{
         set({isLoading: true, error:null})
         try {

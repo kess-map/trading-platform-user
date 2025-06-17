@@ -3,10 +3,12 @@ import {useNavigate} from 'react-router-dom'
 import {useAuthStore} from '../store/authStore'
 import toast from 'react-hot-toast';
 import LiveSessionTimer from '../components/Timer';
+import axiosInstance from '../utils/axios';
 
 const SignupPage = () => {
   const navigate = useNavigate()
-  const {login, isLoading, user} = useAuthStore()
+  const {user, setUser} = useAuthStore()
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -31,8 +33,23 @@ const SignupPage = () => {
     if(!formData.email || !formData.password){
       return toast.error('Fill in all fields')
     }
-    await login(formData.email, formData.password)
-    navigate('/home')
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.post('/auth/login', formData);
+      const user = response.data.data.user;
+
+      toast.success(response.data.message);
+
+      // Optional: Save user globally, if needed later
+      setUser(user);
+
+      // ✅ Navigate only after everything is done
+      navigate('/home', { replace: true});
+    } catch (error) {
+      toast.error(error?.response?.data?.message || 'Signup failed');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (

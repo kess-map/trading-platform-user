@@ -2,13 +2,15 @@ import { useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
 import {useAuthStore} from '../store/authStore'
 import toast from 'react-hot-toast';
+import axiosInstance from '../utils/axios';
 
 const SignupPage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const referralCode = searchParams.get('ref')
-  const {signup, isLoading} = useAuthStore()
+  const { setUser } = useAuthStore();
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     username: '', 
@@ -41,13 +43,25 @@ const SignupPage = () => {
     }
 
     if(!formData.agree){
-      toast.error('Please read and accept the terms and conditions')
+      return toast.error('Please read and accept the terms and conditions')
     }
 
-    const res = await signup(formData)
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.post('/auth/signup', formData);
+      const user = response.data.data.user;
 
-    if(res.status === 200){
-      navigate('/verify-phone')
+      toast.success(response.data.message);
+
+      // Optional: Save user globally, if needed later
+      setUser(user);
+
+      // ✅ Navigate only after everything is done
+      navigate('/verify-phone');
+    } catch (error) {
+      toast.error(error?.response?.data?.message || 'Signup failed');
+    } finally {
+      setIsLoading(false);
     }
   }
 
