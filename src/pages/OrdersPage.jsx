@@ -314,15 +314,23 @@ const handleAppealSubmit = async()=>{
         {isMatched && <><p className="font-semibold text-[#5B6069]">{orderType === 'sell' ? order.buyer.fullName : order.seller.fullName} |</p> <span className='text-[#5B6069] ml-2'> {orderType === 'sell' ? order.buyer.phoneNumber : order.seller.phoneNumber}</span>
         <Copy
           className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
-          onClick={() => handleCopy(orderType === 'sell' ? order.seller.phoneNumber : order.buyer.phoneNumber)}
+          onClick={() => handleCopy(orderType === 'sell' ? order.buyer.phoneNumber : order.seller.phoneNumber)}
           /></>}
         </div>
         <p className="text-sm text-[#1E2229]">
           {displayOrder.paymentMethod === 'bank' ? 'Bank Transfer' : "Crypto(USDT)"} 
-          {orderType === 'sell' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
+          {!isMatched && orderType === 'sell' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
+          {isMatched && orderType === 'buy' && <span>{displayOrder.paymentMethod === 'bank' ? <span className='text-[#1E2229]'> • {displayOrder.bankName}</span> : <span className='text-[#1E2229]'> • {displayOrder.cryptoNetwork}</span>}</span>}
         </p>
         <p className="text-sm text-[#1E2229] flex items-center">
-        {orderType === 'sell' && <><span> {displayOrder.paymentMethod === 'bank' 
+        {!isMatched && orderType === 'sell' && <><span> {displayOrder.paymentMethod === 'bank' 
+            ? `Account no: ${displayOrder.accountNumber}` 
+            : `Wallet Address: ${displayOrder.cryptoAddress}`}</span>
+          <Copy
+            className="w-4 h-4 cursor-pointer text-[#8C55C1] ml-2"
+            onClick={() => handleCopy(displayOrder.paymentMethod === 'bank' ? displayOrder.accountNumber : displayOrder.cryptoAddress)}
+          /></>}
+        {isMatched && orderType === 'buy' && <><span> {displayOrder.paymentMethod === 'bank' 
             ? `Account no: ${displayOrder.accountNumber}` 
             : `Wallet Address: ${displayOrder.cryptoAddress}`}</span>
           <Copy
